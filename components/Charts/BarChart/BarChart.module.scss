@@ -1,0 +1,9 @@
+.wrapper {
+  @apply w-full rounded-[12px] border-[1px] border-[#DEE0E3] py-[30px];
+  .recharts-cartesian-grid {
+    @apply h-full w-full;
+    .gird {
+      @apply h-full w-full;
+    }
+  }
+}

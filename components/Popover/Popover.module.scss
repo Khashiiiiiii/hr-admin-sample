@@ -1,0 +1,29 @@
+.positionTrigger {
+  @apply flex cursor-pointer items-center gap-[16px] whitespace-nowrap border-none text-[#686E78];
+}
+
+.positionTrigger {
+  @apply cursor-pointer;
+}
+.positionContent {
+  @apply flex h-[388px] w-[313px] flex-col items-center justify-between gap-[12px] rounded-[12px] px-0 pt-[24px];
+}
+.search {
+  @apply h-[40px] w-[265px];
+}
+.list {
+  @apply flex max-h-[calc(100%-40px)] w-full flex-col gap-[24px] overflow-scroll;
+  .listItem {
+    @apply flex items-center gap-[24px] overflow-ellipsis whitespace-nowrap pr-[32px] text-[18px] font-normal text-[#323337];
+    button {
+      @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+    }
+
+    .checkboxSkeleton {
+      @apply h-[24px] w-[24px];
+    }
+    .titleSkeleton {
+      @apply h-[28px] w-[180px];
+    }
+  }
+}

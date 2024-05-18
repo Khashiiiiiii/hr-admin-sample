@@ -1,0 +1,53 @@
+.wrapper {
+  @apply flex min-h-full w-full flex-col gap-[24px] overflow-scroll bg-[#FFFFFF] px-[30px] pb-[99px] pt-[47px];
+
+  .backBtn {
+    @apply flex w-fit items-center gap-[10px] border-b-[1px] border-transparent text-[18px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out hover:border-[#00AEEF];
+
+    .iconWrapper {
+      @apply h-[24px] w-[24px];
+    }
+    path {
+      @apply stroke-[#00AEEF];
+    }
+  }
+
+  .testHeader {
+    @apply flex w-full flex-col gap-[38px];
+    .topSection {
+      @apply flex w-full justify-between;
+      .testInfo {
+        @apply flex flex-col justify-between gap-[13px];
+        h1 {
+          @apply text-[28px] font-medium text-[#1B1D22];
+        }
+
+        h3 {
+          @apply text-[18px] font-normal text-[#686E78];
+        }
+      }
+
+      .downloadLink {
+        @apply flex h-fit cursor-pointer items-center justify-between gap-[10px] rounded-[12px] border-[1px] border-[#00AEEF] px-[30px] py-[8.5px] text-[16px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out hover:bg-[#00AEEF] hover:text-white;
+        &:hover {
+          path {
+            @apply stroke-white;
+          }
+        }
+      }
+    }
+
+    .bottomSection {
+      @apply flex flex-col gap-[12px];
+      h2 {
+        @apply text-[22px] font-medium text-[#1B1D22];
+      }
+
+      .paragraphGroup {
+        p {
+          @apply text-[18px] font-normal text-[#1B1D22];
+        }
+      }
+    }
+  }
+}

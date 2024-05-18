@@ -1,0 +1,101 @@
+.emailTrigger {
+  @apply flex items-center gap-[12px];
+  border: 0px !important;
+}
+
+.emailContent {
+  @apply flex h-[145px] w-[338px] flex-col justify-between p-[24px];
+  .emailInput {
+    @apply rounded-[12px] border-[1px] border-[#00AEEF] px-[16px] py-[12px] text-black outline-none focus:ring-0;
+  }
+  .emailBtn {
+    @apply w-fit bg-[#00AEEF] px-[20px] py-[8px] text-[16px] font-normal text-white;
+  }
+}
+
+.checkboxWrapper {
+  @apply flex items-center gap-[8px];
+  .arrowDown {
+    @apply cursor-pointer;
+  }
+}
+.actions {
+  @apply flex items-center justify-end gap-[20px] pl-[24px];
+  .arrow {
+    @apply cursor-pointer;
+  }
+}
+
+.more {
+  @apply border-0;
+  border: 0px !important;
+}
+.moreContent {
+  @apply h-[98px] w-[218px] rounded-[12px] border-[1px] border-[#7D7D7E1A] p-0;
+
+  button {
+    @apply h-[50%] w-full justify-start bg-transparent text-[16px] shadow-none hover:bg-transparent;
+  }
+  .sendTest {
+    @apply border-b-[0] text-black hover:bg-black hover:text-white;
+  }
+
+  .deleteContact {
+    @apply border-t-0 text-[#DD4943] hover:bg-[#DD4943] hover:text-white;
+  }
+}
+
+.subTableMoreContent {
+  @apply h-fit w-[218px] rounded-[12px] border-[1px] border-[#7D7D7E1A] p-0;
+  button {
+    @apply h-[49px] w-full justify-start border-b-[0] bg-transparent text-[16px] text-black shadow-none hover:bg-black hover:text-white;
+  }
+  .downloadAnalysisBtn {
+    @apply rounded-none border-b-[1px] border-t-[1px] border-[#DEE0E3];
+  }
+}
+
+.subTableTitle,
+.subTableStatus {
+  @apply px-[10px] py-[4px] text-[16px] font-medium text-[#686E78] first-of-type:mr-[16px];
+}
+
+.subTableTitle {
+  @apply text-[#00AEEF];
+}
+
+.done {
+  @apply w-fit rounded-full bg-[#16AF53] text-white;
+}
+
+.subTableActions {
+  @apply flex items-center justify-end gap-[24px] pl-[24px];
+  > button {
+    @apply flex items-center gap-[10px] rounded-[12px] border-[1px] border-[#686E78] bg-transparent px-[16px] py-[8px] text-[16px] font-normal text-[#686E78] last-of-type:p-0 hover:text-white;
+  }
+
+  .deleteContact {
+    @apply w-[150px] h-[40px] flex items-center rounded-[12px] justify-center border-[1px] border-[#686E78] bg-transparent text-[16px] font-normal text-[#686E78];
+  }
+}
+
+.positionTrigger,
+.companyTrigger {
+  @apply flex cursor-pointer items-center gap-[16px] whitespace-nowrap border-none text-[#686E78];
+}
+.positionContent,
+.companyContent {
+  @apply flex h-[388px] w-[313px] flex-col items-center justify-between gap-[12px] rounded-[12px] px-0 pt-[24px];
+}
+.search {
+  @apply h-[40px] w-[265px];
+}
+.list {
+  @apply flex max-h-[calc(100%-40px)] w-full flex-col gap-[24px] overflow-scroll;
+  li {
+    @apply flex items-center gap-[24px] overflow-ellipsis whitespace-nowrap pr-[32px] text-[18px] font-normal text-[#323337];
+    button {
+      @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+    }
+  }
+}

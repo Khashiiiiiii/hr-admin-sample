@@ -1,0 +1,7 @@
+.wrapper {
+  @apply flex w-[250px] flex-col items-center gap-[55px] border-l-[1px] border-[#DEE0E380] pt-[26px];
+
+  .menu {
+    @apply flex w-full flex-col gap-[14px] pr-[33px];
+  }
+}

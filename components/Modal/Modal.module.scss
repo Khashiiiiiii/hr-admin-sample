@@ -1,0 +1,27 @@
+.wrapper {
+  @apply flex max-w-[312px] flex-col items-start p-[24px];
+
+  .title {
+    @apply text-right text-[22px] text-black;
+  }
+  .description {
+    @apply text-right text-[18px] text-gray-500;
+  }
+  .children {
+    @apply w-full rounded-[12px] text-center;
+    button {
+      @apply w-full rounded-[12px];
+    }
+  }
+
+  .footer {
+    @apply w-full flex-col justify-center rounded-[12px] text-center;
+    button {
+      @apply rounded-[12px];
+    }
+  }
+
+  button {
+    @apply last-of-type:right-[90%] last-of-type:top-5;
+  }
+}

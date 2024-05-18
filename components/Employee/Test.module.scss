@@ -1,0 +1,94 @@
+.wrapper {
+  @apply relative flex h-full w-full justify-center py-[54px];
+  .progress {
+    @apply fixed right-0 top-[90px] h-[4px] bg-[#EC008C] transition-all delay-75 ease-in-out;
+  }
+  .testContent {
+    @apply flex flex-col gap-[24px];
+    .testHead,
+    .testBody {
+      @apply w-[676px] rounded-[12px] bg-[#FFFFFF] p-[24px];
+    }
+
+    .testHead {
+      @apply flex flex-col gap-[24px];
+      .testTitle {
+        @apply relative;
+      }
+    }
+
+    .testBody {
+      @apply flex h-full max-h-[874px] flex-wrap gap-[24px] overflow-scroll;
+      .input {
+        @apply flex h-[48px] items-center rounded-[12px] font-normal;
+        border: 1px solid;
+        border-color: #dee0e3;
+        input {
+          @apply border-0 bg-transparent py-[10px] pr-[16px] text-[18px] text-[#1B1D22] shadow-none outline-none focus:ring-0;
+        }
+      }
+
+      .questionsWrapper {
+        @apply flex w-full flex-col gap-[32px];
+        li {
+          @apply flex flex-col gap-[20px];
+
+          p {
+            @apply text-[22px] font-normal text-[#1B1D22];
+          }
+
+          .radioGroup {
+            @apply flex  gap-[8px] self-start;
+            .radioItem {
+              @apply flex w-[100px] flex-col items-center justify-center gap-[12px];
+              .radio {
+                @apply relative m-0 h-[20px] w-[20px] rounded-full  bg-transparent p-0 text-transparent outline-none ring-0 aria-checked:border-[#EC008C];
+                border-color: #dee0e3;
+                border-width: 2px;
+                span {
+                  @apply absolute left-1/2 top-1/2 inline-block h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#EC008C];
+                  svg {
+                    @apply hidden;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .questions1Wrapper {
+        @apply flex w-full flex-col gap-[32px];
+
+        li {
+          @apply flex w-full items-center justify-between;
+
+          p {
+            @apply flex items-center;
+          }
+
+          .input {
+            @apply flex w-[118px] justify-center rounded-[12px] border-[1px] border-[#DEE0E3] text-[#1B1D22];
+            input {
+              @apply w-full border-0 bg-transparent px-[16px] py-[10px] text-center text-[18px] text-[#1B1D22] shadow-none outline-none focus:ring-0;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .testTitle {
+      @apply self-start text-[28px] font-medium text-[#1B1D22];
+    }
+  }
+
+  .btn {
+    @apply h-[44px] w-[209px] cursor-pointer rounded-[12px] border-0 bg-[#00AEEF] text-[18px] font-normal text-[#FDFDFF] shadow-none;
+  }
+}

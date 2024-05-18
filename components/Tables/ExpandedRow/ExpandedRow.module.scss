@@ -1,0 +1,22 @@
+.expandedTableRow {
+  .tableCell {
+    @apply p-0;
+    .innerTable {
+      @apply bg-[#FCFCFC];
+      .tableHeader {
+        .subTableHeader {
+          @apply h-[73px] border-b-[1px];
+          .subTableHead {
+            @apply pr-[24px] text-right text-[16px] font-normal text-[#686E78];
+          }
+        }
+      }
+
+      .tableBody {
+        .tableRow {
+          @apply h-[73px];
+        }
+      }
+    }
+  }
+}

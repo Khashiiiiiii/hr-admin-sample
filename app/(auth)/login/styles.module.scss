@@ -1,0 +1,50 @@
+.wrapper {
+  @apply flex w-full;
+  .logoWrapper,
+  .loginWrapper {
+    @apply flex w-1/2 items-center justify-center;
+  }
+
+  .logoWrapper {
+    @apply relative;
+    background: url('../../../public/assets/loginBg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .overlay {
+      background: rgb(88, 206, 251);
+      background: -moz-linear-gradient(
+        180deg,
+        rgba(88, 206, 251, 1) 15%,
+        rgba(194, 239, 255, 0.15) 100%
+      );
+      background: -webkit-linear-gradient(
+        180deg,
+        rgba(88, 206, 251, 1) 15%,
+        rgba(194, 239, 255, 0.15) 100%
+      );
+      background: linear-gradient(
+        180deg,
+        rgba(88, 206, 251, 1) 15%,
+        rgba(194, 239, 255, 0.15) 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#58cefb",endColorstr="#c2efff",GradientType=1);
+      @apply h-full w-full opacity-45;
+    }
+    .qualiaLogo {
+      @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
+  }
+
+  .loginWrapper {
+    @apply bg-[#F9F9FB];
+  }
+
+  .loginFormWrapper {
+    @apply flex w-fit flex-col items-start gap-[40px];
+    h1 {
+      @apply text-[32px] font-bold text-[#000000];
+    }
+  }
+}

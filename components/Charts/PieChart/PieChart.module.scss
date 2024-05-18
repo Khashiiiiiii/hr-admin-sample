@@ -1,0 +1,39 @@
+.wrapper {
+  @apply w-full rounded-[12px] border-[1px] border-[#DEE0E3] px-[24px];
+
+  .legendWrapper {
+    @apply flex items-center gap-[11px];
+    .svg {
+    }
+    .titleWrapper {
+      @apply flex items-center justify-evenly gap-[25px] text-[14px] font-normal text-[#686E78];
+    }
+  }
+  // li {
+  //   display: flex !important;
+  //   align-items: center !important;
+  //   gap: 11px;
+  //   > svg {
+  //     margin-right: 0 !important;
+  //     width: 16px;
+  //     height: 16px;
+  //     > path {
+  //       border-radius: 2px;
+  //       width: 16px;
+  //       height: 16px;
+  //     }
+  //   }
+
+  //   > span {
+  //     > span {
+  //       @apply flex flex-row-reverse items-center gap-[25px] text-[14px] font-normal;
+  //       :first-child {
+  //         @apply h-[22px] w-[22px];
+  //       }
+  //       :last-of-type {
+  //         @apply h-[22px] w-[10px];
+  //       }
+  //     }
+  //   }
+  // }
+}

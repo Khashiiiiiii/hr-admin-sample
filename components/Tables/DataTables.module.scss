@@ -1,0 +1,101 @@
+.wholeCompWrapper {
+  @apply flex h-full max-h-[720px] flex-col items-start justify-between;
+  .outerWrapper {
+    @apply max-h-[610px] w-full overflow-scroll rounded-[12px] border;
+    .wrapper {
+      @apply relative h-full max-h-full overflow-hidden rounded-[12px] bg-white;
+      .tableHeader {
+        @apply p-[26px];
+        .tableRow {
+          @apply h-[76px];
+          .tableHead {
+            @apply text-right text-[18px] first-of-type:pr-[26px];
+            button {
+              @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+            }
+          }
+        }
+      }
+
+      .tableBody {
+        .skeletonWrapper {
+          @apply h-[76px];
+          .tableCell {
+            @apply first-of-type:pr-[26px];
+          }
+          .square {
+            @apply h-[24px] w-[24px];
+          }
+          .rect {
+            @apply h-[28px];
+          }
+
+          .rectSm {
+            @apply w-[42px];
+          }
+
+          .rectMd {
+            @apply w-[150px];
+          }
+
+          .rectLg {
+            @apply w-[250px];
+          }
+        }
+        .tableRow {
+          @apply h-[76px];
+          .tableCell {
+            @apply text-[18px] font-normal text-[#1B1D22] first-of-type:pr-[26px];
+            button {
+              @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+            }
+          }
+        }
+        .expandedTableRow {
+          .tableCell {
+            @apply p-0;
+            .innerTable {
+              @apply bg-[#FCFCFC];
+              .tableHeader {
+                .subTableHeader {
+                  @apply h-[73px] border-b-[1px];
+                  .subTableHead {
+                    @apply pr-[24px] text-right text-[16px] font-normal text-[#686E78];
+                  }
+                }
+              }
+
+              .tableBody {
+                .tableRow {
+                  @apply h-[73px];
+                }
+              }
+            }
+          }
+        }
+        .activeTableRow {
+          @apply flex-col bg-[#FAFAFA];
+        }
+      }
+    }
+  }
+
+  .paginationWrapper {
+    @apply flex w-full items-center justify-between;
+    .pagination {
+      @apply flex items-center gap-[12px];
+      button {
+        @apply flex cursor-pointer items-center gap-[8px] bg-transparent text-black shadow-none;
+      }
+      .pagesWrapper {
+        @apply flex flex-row-reverse gap-[8px];
+        span {
+          @apply cursor-pointer;
+        }
+        .activePage {
+          @apply text-[#EC008C];
+        }
+      }
+    }
+  }
+}

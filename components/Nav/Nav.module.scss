@@ -1,0 +1,27 @@
+.wrapper {
+  @apply flex h-[85px] w-full justify-end border-b-[1px] border-[#DEE0E380] px-[32px]  py-[26px];
+
+  .icon {
+    @apply h-[16px] w-[16px];
+  }
+
+  .dropdownTrigger {
+    @apply flex cursor-pointer items-center gap-[16px];
+    .label {
+      @apply flex items-center gap-[10px];
+    }
+    .skeleton {
+      @apply h-[20px] w-[20px] rounded-full;
+    }
+  }
+}
+
+.formWrapper {
+  @apply p-0;
+  .form {
+    @apply w-full;
+    button {
+      @apply m-0 w-full bg-transparent p-0 text-start text-red-600 shadow-none;
+    }
+  }
+}

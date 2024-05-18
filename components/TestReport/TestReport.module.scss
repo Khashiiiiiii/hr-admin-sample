@@ -1,0 +1,40 @@
+.wrapper {
+  @apply flex flex-col items-center overflow-scroll w-[607px] gap-[23px] -mt-[70px];
+  .downloadLink {
+    @apply self-end flex h-fit cursor-pointer items-center justify-between gap-[10px] rounded-[12px] border-[1px] border-[#00AEEF] px-[30px] py-[8.5px] text-[16px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out hover:bg-[#00AEEF] hover:text-white;
+    &:hover {
+      path {
+        @apply stroke-white;
+      }
+    }
+  }
+
+  .questionsWrapper {
+    @apply rounded-[12px] bg-[#FFFFFF] w-[607px] flex flex-col gap-[16px] p-[24px];
+    li {
+      @apply flex flex-col gap-[20px];
+
+      p {
+        @apply text-[22px] font-normal text-[#1B1D22];
+      }
+
+      .radioGroup {
+        @apply flex  gap-[8px] self-start;
+        .radioItem {
+          @apply flex w-[100px] flex-col items-center justify-center gap-[12px];
+          .radio {
+            @apply relative m-0 h-[20px] w-[20px] rounded-full  bg-transparent p-0 text-transparent outline-none ring-0 aria-checked:border-[#EC008C];
+            border-color: #dee0e3;
+            border-width: 2px;
+            span {
+              @apply absolute left-1/2 top-1/2 inline-block h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#EC008C];
+              svg {
+                @apply hidden;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

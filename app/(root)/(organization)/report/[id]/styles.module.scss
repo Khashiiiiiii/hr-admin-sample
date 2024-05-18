@@ -1,0 +1,31 @@
+.wrapper {
+  @apply flex items-center min-h-full w-full flex-col gap-[24px] overflow-scroll px-[30px] pb-[99px] pt-[47px];
+
+  .backBtn {
+    @apply self-start flex w-fit items-center gap-[10px] border-b-[1px] border-transparent text-[18px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out hover:border-[#00AEEF];
+
+    .iconWrapper {
+      @apply h-[24px] w-[24px];
+    }
+    path {
+      @apply stroke-[#00AEEF];
+    }
+  }
+
+  .testInfo {
+    @apply flex flex-col justify-between gap-[13px] self-start;
+    h1 {
+      @apply text-[28px] font-medium text-[#1B1D22];
+    }
+    div {
+      @apply flex gap-[8px] items-center;
+    }
+
+    h3 {
+      @apply text-[22px] font-normal text-[#1B1D22];
+    }
+    h4 {
+      @apply text-[18px] font-normal text-[#686E78];
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.layoutWrapper {
+  @apply flex h-screen w-screen;
+
+  .main {
+    @apply h-full max-h-[100vh] w-full overflow-hidden;
+
+    .contentWrapper {
+      @apply h-full max-h-[calc(100vh-85px)] w-full overflow-scroll bg-[#F9F9FB];
+    }
+  }
+}
+
+.loadingWrapper {
+  @apply w-full h-full flex items-center justify-center;
+}

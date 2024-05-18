@@ -1,0 +1,17 @@
+.wrapper {
+  @apply flex items-center gap-[12px] text-[18px] font-light text-[#686E78];
+}
+
+.active {
+  @apply border-l-[2px] border-[#EC008C] text-[#EC008C];
+
+  svg {
+    @apply stroke-[#EC008C];
+    path {
+      @apply stroke-[#EC008C];
+    }
+    circle {
+      @apply stroke-[#EC008C];
+    }
+  }
+}

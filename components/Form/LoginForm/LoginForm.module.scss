@@ -1,0 +1,25 @@
+.wrapper {
+  @apply flex w-[442px] flex-col items-center justify-between gap-[40px] rounded-[12px] border-[0.5px] border-[#DEE0E3] bg-[#FFFFFF] px-[41px] py-[48px];
+  .emailInput,
+  .passwordInput {
+    @apply w-full  rounded-[12px] border-[1px] border-[#DEE0E3] bg-transparent text-[18px] font-normal text-[#1B1D22];
+  }
+  input {
+    @apply h-[48px] border-0 shadow-none focus:ring-0;
+  }
+
+  .passwordInput {
+    @apply flex max-h-[48px] items-center gap-[12px] p-[12px];
+    input {
+      @apply m-0 border-0 p-0;
+      margin: 0 !important;
+    }
+    .eye {
+      @apply cursor-pointer;
+    }
+  }
+
+  .submitBtn {
+    @apply h-[44px] w-full rounded-[12px] bg-[#00AEEF] text-[18px] font-normal text-[#FDFDFF];
+  }
+}
