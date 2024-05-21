@@ -1,0 +1,45 @@
+.wrapper {
+  @apply rounded-[12px];
+}
+.uploadBtn {
+  @apply border-[1px] border-[#00AEEF] bg-[#00AEEF] text-[18px] font-normal text-white hover:bg-white hover:text-[#00AEEF];
+}
+
+.file {
+  @apply rounded-[12px] border-[1px] border-[#00AEEF] bg-white text-[18px] text-[#00AEEF] hover:bg-[#00AEEF] hover:text-white;
+  :hover {
+    @apply bg-[#00AEEF] text-white;
+  }
+}
+
+.triggerText {
+  @apply rounded-[12px] bg-[#00AEEF] px-[16px] py-[8px] text-[18px] font-normal text-white;
+}
+
+.testsWrapper {
+  @apply flex flex-col gap-[12px] w-full;
+  .testItem {
+    @apply w-full flex gap-[24px];
+    button {
+      @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+    }
+    span {
+      @apply text-[#1B1D22] text-[18px] font-normal;
+    }
+
+    .square {
+      @apply w-[24px] h-[24px];
+    }
+
+    .rect {
+      @apply h-[24px] w-[150px];
+    }
+  }
+}
+
+.toastWrapper {
+  @apply flex w-full justify-between items-center gap-[16px];
+  .icon {
+    @apply w-[48px] h-[48px];
+  }
+}

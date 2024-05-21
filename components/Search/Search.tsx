@@ -1,24 +1,22 @@
-'use client'
+"use client";
 
-import { cn } from '@/lib/utils'
-import { Input } from '../ui/input'
-import styles from './Search.module.scss'
-import SearchIcon from '@/components/svg/search.svg'
-import { useState } from 'react'
-import { getEmployeeSearch } from '@/services'
+import { cn } from "@/lib/utils";
+import { Input } from "../ui/input";
+import styles from "./Search.module.scss";
+import SearchIcon from "@/components/svg/search.svg";
 
 const Search = ({
   placeholder,
   className,
   setSearch,
   search,
-  handleSearch
+  handleSearch,
 }: {
-  placeholder: string
-  className?: string
-  search?: string
-  setSearch: (search: string) => void
-  handleSearch: () => void
+  placeholder: string;
+  className?: string;
+  search: string;
+  setSearch: (search: string) => void;
+  handleSearch: () => void;
 }) => {
   return (
     <div className={cn(styles.wrapper, className)}>
@@ -26,15 +24,15 @@ const Search = ({
         <SearchIcon />
       </div>
       <Input
-        type='text'
+        type="text"
         placeholder={`جست‌وجو در ${placeholder}`}
         className={styles.input}
-        onChange={event => setSearch(event.target.value)}
+        onChange={(event) => setSearch(event.target.value)}
         value={search}
         onBlur={handleSearch}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

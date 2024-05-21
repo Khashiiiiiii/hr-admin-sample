@@ -1,4 +1,4 @@
-import styles from './Modal.module.scss'
+import styles from "./Modal.module.scss";
 
 import {
   Dialog,
@@ -8,18 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose
-} from '@/components/ui/dialog'
-import { ReactNode } from 'react'
+  DialogClose,
+} from "@/components/ui/dialog";
+import { ReactNode } from "react";
 
 interface IModalProps {
-  triggerText: string
-  title: string
-  description: string
-  children: ReactNode
-  FooterNode: ReactNode
-  className?: string
-  triggerTextClassName?: string
+  triggerText: string;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  FooterNode: ReactNode;
+  className?: string;
+  triggerTextClassName?: string;
+  onOpenChange?: () => void;
+  open?: boolean;
 }
 
 const Modal = ({
@@ -28,25 +30,29 @@ const Modal = ({
   children,
   description,
   title,
-  triggerTextClassName
+  triggerTextClassName,
+  onOpenChange,
+  open,
 }: IModalProps) => {
   return (
-    <Dialog>
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogTrigger className={triggerTextClassName}>
         {triggerText}
       </DialogTrigger>
       <DialogContent className={styles.wrapper}>
         <DialogHeader>
           <DialogTitle className={styles.title}>{title}</DialogTitle>
-          <DialogDescription className={styles.description}>
-            {description}
-          </DialogDescription>
+          {description && (
+            <DialogDescription className={styles.description}>
+              {description}
+            </DialogDescription>
+          )}
         </DialogHeader>
         <div className={styles.children}>{children}</div>
         <DialogFooter className={styles.footer}>{FooterNode}</DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

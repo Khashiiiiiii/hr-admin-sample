@@ -8,7 +8,6 @@ import {
   getExpandedRowModel,
   useReactTable,
   getPaginationRowModel,
-  Row,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -17,29 +16,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableFooter,
 } from "@/components/ui/table";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 import ArrowRight from "@/components/svg/arrow-right.svg";
 import ArrowLeft from "@/components/svg/arrow-left.svg";
-import {
-  IEmployee,
-  IEmployeeList,
-  IGetEmployeeAllExamsList,
-  IGetExamsList,
-} from "@/interfaces";
-import {
-  getEmployeeAllExams,
-  getEmployeeList,
-  getOrganizationPositionsFilters,
-} from "@/services";
-import { TContacts } from "./Columns";
+import { IEmployee, IEmployeeList, IGetExamsList } from "@/interfaces";
+import { getEmployeeList } from "@/services";
 import { Session } from "next-auth";
 import { Skeleton } from "../ui/skeleton";
-import { IExam } from "@/interfaces/manager";
 import { ExpandedRow } from "./ExpandedRow";
+import { useStore } from "@/store";
+import { TestSend } from "../Modal/TestSend";
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<IEmployee, TValue>[] | ColumnDef<IGetExamsList, TValue>[];
   data: IEmployeeList;
@@ -56,10 +48,18 @@ export function DataTable<TData, TValue>({
   session,
 }: DataTableProps<TData, TValue>) {
   const [expanded, setExpanded] = useState({});
-  const [loading, setLoading] = useState<boolean>(false);
   const [tableData, setTableData] = useState<Array<IEmployee | IGetExamsList>>(
     data.results
   );
+
+  const selectedRef = useRef(null);
+  const initialRender = useRef(true);
+
+  const [selected, setSelected] = useState<IEmployee[]>([]);
+
+  const tableRows = useStore((state) => state.tableRows);
+  const setTableRowsLoading = useStore((state) => state.setTableRowsLoading);
+  const tableRowsLoading = useStore((state) => state.tableRowsLoading);
 
   const table = useReactTable({
     data: tableData,
@@ -108,19 +108,50 @@ export function DataTable<TData, TValue>({
   }, []);
 
   useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+
     if (type === "employee") {
       table.resetExpanded();
-      setLoading(true);
+      table.resetRowSelection(false);
+      setTableRowsLoading(true);
+
       getEmployeeList({
         token: session.user.accessToken!,
         params: { page: pageIndex + 1, page_size: 7 },
       })
-        .then((res) => setTableData(res.results))
-        .finally(() => setLoading(false));
+        .then((res) => {
+          setTableData(res.results);
+        })
+        .finally(() => setTableRowsLoading(false));
     }
   }, [pageIndex]);
 
-  useEffect(() => {}, [tableData]);
+  useEffect(() => {
+    if (tableRows !== null) {
+      setTableData(tableRows.results);
+      table.setState((oldState) => ({
+        ...oldState,
+        pagination: {
+          ...oldState.pagination,
+
+          pageCount: Math.ceil(tableRows.count / 7),
+        },
+      }));
+    }
+  }, [tableRows]);
+
+  useEffect(() => {
+    if (table.getSelectedRowModel().flatRows.length > 0) {
+      setSelected(
+        table
+          .getSelectedRowModel()
+          .flatRows.map((item) => item.original as IEmployee)
+      );
+    }
+  }, [table.getSelectedRowModel()]);
 
   return (
     <div className={styles.wholeCompWrapper}>
@@ -145,7 +176,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody className={styles.tableBody}>
-            {loading ? (
+            {tableRowsLoading ? (
               <>
                 {[...Array(7)].map((_, index) => (
                   <TableRow key={index} className={styles.skeletonWrapper}>
@@ -203,6 +234,24 @@ export function DataTable<TData, TValue>({
               </TableRow>
             )}
           </TableBody>
+
+          {selected.length > 0 && (
+            <TableFooter className={styles.tableFooter}>
+              <TableRow className={styles.selectedWrapper} ref={selectedRef}>
+                <TableCell className={styles.text}>
+                  {selected.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
+                  {selected.length > 1 ? "اند" : "است"}
+                </TableCell>
+                {[...Array(5)].map(() => (
+                  <TableCell />
+                ))}
+
+                <TableCell className={styles.button}>
+                  <TestSend selectedUsers={selected} />
+                </TableCell>
+              </TableRow>
+            </TableFooter>
+          )}
         </Table>
       </div>
 
@@ -222,20 +271,6 @@ export function DataTable<TData, TValue>({
             بعدی
           </Button>
           <div className={styles.pagesWrapper}>
-            {/* {table.getPageOptions().map(item => (
-              <span
-                key={item}
-                onClick={() => {
-                  table.setPageIndex(item)
-                }}
-                className={cn(
-                  styles.pageIndex,
-                  pageIndex === item && styles.activePage
-                )}
-              >
-                {(item + 1).toLocaleString('fa-IR')}
-              </span>
-            ))} */}
             {pagesWithEllipses.map((page, idx) => (
               <span
                 key={idx}

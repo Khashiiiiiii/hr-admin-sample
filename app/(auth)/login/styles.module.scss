@@ -7,7 +7,7 @@
 
   .logoWrapper {
     @apply relative;
-    background: url('../../../public/assets/loginBg.png');
+    background: url("../../../public/assets/loginBg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,7 +44,7 @@
   .loginFormWrapper {
     @apply flex w-fit flex-col items-start gap-[40px];
     h1 {
-      @apply text-[32px] font-bold text-[#000000];
+      @apply text-[32px] text-[#000000];
     }
   }
 }

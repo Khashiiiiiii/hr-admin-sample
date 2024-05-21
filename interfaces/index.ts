@@ -1,6 +1,11 @@
-import { ILogin, ILoginProps, USER_TYPE } from './user'
-import { IEmployeeList, IEmployee, IOrganizationFilters } from './managements'
-import { IGetExamsList, IGetEmployeeAllExamsList } from './manager'
+import { ILogin, ILoginProps, USER_TYPE } from "./user";
+import { IEmployeeList, IEmployee, IOrganizationFilters } from "./managements";
+import {
+  IGetExamsList,
+  IGetEmployeeAllExamsList,
+  IPostCreateExamProps,
+  IPostCreateExam,
+} from "./manager";
 
 export type {
   ILogin,
@@ -10,5 +15,7 @@ export type {
   IEmployee,
   IOrganizationFilters,
   IGetExamsList,
-  IGetEmployeeAllExamsList
-}
+  IGetEmployeeAllExamsList,
+  IPostCreateExamProps,
+  IPostCreateExam,
+};

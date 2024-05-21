@@ -1,0 +1,9 @@
+.topSection {
+  @apply flex w-full items-center justify-between;
+  .btnGroup {
+    @apply flex items-center gap-[24px];
+    .downloadLink {
+      @apply text-[18px] font-normal text-[#00AEEF];
+    }
+  }
+}

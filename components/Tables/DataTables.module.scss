@@ -9,9 +9,12 @@
         .tableRow {
           @apply h-[76px];
           .tableHead {
-            @apply text-right text-[18px] first-of-type:pr-[26px];
+            @apply text-right text-[18px] first-of-type:pr-[26px] first-of-type:max-w-[80px];
             button {
               @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+            }
+            :nth-of-type(2) {
+              @apply max-w-[80px];
             }
           }
         }
@@ -75,6 +78,24 @@
         }
         .activeTableRow {
           @apply flex-col bg-[#FAFAFA];
+        }
+      }
+
+      .tableFooter {
+        .selectedWrapper {
+          -webkit-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+          -moz-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+          box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+          @apply justify-between items-center bg-white rounded-[12px] w-full h-[92px];
+          .text {
+            @apply text-[18px] font-medium text-center text-[#1B1D22] max-w-fit pr-[15px];
+          }
+          .button {
+            @apply text-center;
+            button {
+              @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
+            }
+          }
         }
       }
     }

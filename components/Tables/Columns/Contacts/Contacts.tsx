@@ -109,30 +109,30 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
   {
     accessorKey: "email",
     header: "آدرس ایمیل",
-    cell: ({ row }) => (
-      <ShadPopover>
-        <PopoverTrigger className={styles.emailTrigger}>
-          <div>
-            <Edit />
-          </div>
-          {row.getValue("email")}
-        </PopoverTrigger>
-        <PopoverContent className={styles.emailContent}>
-          <Input
-            type="email"
-            placeholder={`ایمیل`}
-            defaultValue={row.getValue("email")}
-            className={styles.emailInput}
-          />
-          <Button
-            className={styles.emailBtn}
-            onClick={() => emailEditHandler(row.original.id as string)}
-          >
-            ثبت
-          </Button>
-        </PopoverContent>
-      </ShadPopover>
-    ),
+    // cell: ({ row }) => (
+    //   <ShadPopover>
+    //     <PopoverTrigger className={styles.emailTrigger}>
+    //       <div>
+    //         <Edit />
+    //       </div>
+    //       {row.getValue("email")}
+    //     </PopoverTrigger>
+    //     <PopoverContent className={styles.emailContent}>
+    //       <Input
+    //         type="email"
+    //         placeholder={`ایمیل`}
+    //         defaultValue={row.getValue("email")}
+    //         className={styles.emailInput}
+    //       />
+    //       <Button
+    //         className={styles.emailBtn}
+    //         onClick={() => emailEditHandler(row.original.id as string)}
+    //       >
+    //         ثبت
+    //       </Button>
+    //     </PopoverContent>
+    //   </ShadPopover>
+    // ),
   },
   {
     accessorKey: "actions",
@@ -216,7 +216,7 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
           </Button>
           <Link
             className={styles.deleteContact}
-            href={`/report/${row.id}`}
+            href={row.id}
             //@ts-ignore
           >
             <span>

@@ -1,63 +1,63 @@
-import Link from 'next/link'
-import styles from './styles.module.scss'
-import ArrowRightIcon from '@/components/svg/arrow-right.svg'
-import DownloadIcon from '@/components/svg/download.svg'
-import { ResultAnalysis } from '@/components/ResultAnalysis'
+import Link from "next/link";
+import styles from "./styles.module.scss";
+import ArrowRightIcon from "@/components/svg/arrow-right.svg";
+import DownloadIcon from "@/components/svg/download.svg";
+import { ResultAnalysis } from "@/components/ResultAnalysis";
 
 const page = ({ params }: { params: { id: string } }) => {
-  const {} = params
+  const {} = params;
   const results: {
-    type: 'pie' | 'bar'
-    title: string
-    data: { title: string; value: number }[]
-    color: string | string[]
+    type: "pie" | "bar";
+    title: string;
+    data: { title: string; value: number }[];
+    color: string | string[];
   }[] = [
     {
-      type: 'bar',
+      type: "bar",
       title:
-        'در مقایسه با سازمان‌های مشابه و کار و فعالیتم، احساس می­کنم حقوق و مزایایم در محدوده قابل قبول است.',
+        "در مقایسه با سازمان‌های مشابه و کار و فعالیتم، احساس می­کنم حقوق و مزایایم در محدوده قابل قبول است.",
       data: [
-        { title: 'کاملا مخالفم', value: 13 },
-        { title: 'مخالفم', value: 74 },
-        { title: 'نظری ندارم', value: 91 },
-        { title: 'موافقم', value: 122 },
-        { title: 'کاملا موافقم', value: 53 }
+        { title: "کاملا مخالفم", value: 13 },
+        { title: "مخالفم", value: 74 },
+        { title: "نظری ندارم", value: 91 },
+        { title: "موافقم", value: 122 },
+        { title: "کاملا موافقم", value: 53 },
       ],
-      color: '#ABDFF3'
+      color: "#ABDFF3",
     },
     {
-      type: 'pie',
-      title: 'چه میزان سازمان خود را به سایر متقاضیان کار پیشنهاد می دهید؟',
+      type: "pie",
+      title: "چه میزان سازمان خود را به سایر متقاضیان کار پیشنهاد می دهید؟",
       data: [
-        { title: '۱', value: 22 },
-        { title: '۲', value: 18 },
-        { title: '۳', value: 12 },
-        { title: '۴', value: 11 },
-        { title: '۵', value: 10 },
-        { title: '۶', value: 9 },
-        { title: '۷', value: 6 },
-        { title: '۸', value: 5 },
-        { title: '۹', value: 4 },
-        { title: '۱۰', value: 4 }
+        { title: "۱", value: 22 },
+        { title: "۲", value: 18 },
+        { title: "۳", value: 12 },
+        { title: "۴", value: 11 },
+        { title: "۵", value: 10 },
+        { title: "۶", value: 9 },
+        { title: "۷", value: 6 },
+        { title: "۸", value: 5 },
+        { title: "۹", value: 4 },
+        { title: "۱۰", value: 4 },
       ],
       color: [
-        '#FFDDBD',
-        '#FFF0F0',
-        '#D5D9D7',
-        '#AEC0F5',
-        '#F08EC8',
-        '#B9E4F4',
-        '#A5B8F0',
-        '#DFFFF2',
-        '#ABDFF3',
-        '#6D7CFF'
-      ]
-    }
-  ]
+        "#FFDDBD",
+        "#FFF0F0",
+        "#D5D9D7",
+        "#AEC0F5",
+        "#F08EC8",
+        "#B9E4F4",
+        "#A5B8F0",
+        "#DFFFF2",
+        "#ABDFF3",
+        "#6D7CFF",
+      ],
+    },
+  ];
 
   return (
     <div className={styles.wrapper}>
-      <Link href='/analysis' className={styles.backBtn}>
+      <Link href="/analysis" className={styles.backBtn}>
         <span className={styles.iconWrapper}>
           <ArrowRightIcon />
         </span>
@@ -109,7 +109,7 @@ const page = ({ params }: { params: { id: string } }) => {
         <ResultAnalysis results={results} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

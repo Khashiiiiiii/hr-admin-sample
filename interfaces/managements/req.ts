@@ -1,15 +1,17 @@
 export interface IEmployeeListProps {
-  token: string
+  token: string;
   params: {
-    page: number
-    page_size: number
-  }
+    page?: number;
+    page_size?: number;
+    position_filter?: string;
+    department_filter?: string;
+  };
 }
 
 export interface IEmployeeProps {
-  id: string
+  id: string;
 }
 
 export interface IEmployeeSearch {
-  char: string
+  char: string;
 }
