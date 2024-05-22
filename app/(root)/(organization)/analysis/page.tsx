@@ -45,7 +45,6 @@ export default async function AnalysisPage() {
       {/* <DataTable
         columns={companiesColumns}
         data={data}
-        //@ts-ignore
         subColumns={companiesSubColumns}
       /> */}
     </div>
