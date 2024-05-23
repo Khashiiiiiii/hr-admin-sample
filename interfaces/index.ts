@@ -9,6 +9,7 @@ import {
   IGetOrganizationExam,
   IGetExamFullAnalysis,
 } from "./manager";
+import { IGetEmployeeRemainingExams, IGetEmployeeExam } from "./employee";
 
 export type {
   ILogin,
@@ -24,4 +25,6 @@ export type {
   IGetAllOrganizationExam,
   IGetOrganizationExam,
   IGetExamFullAnalysis,
+  IGetEmployeeRemainingExams,
+  IGetEmployeeExam,
 };

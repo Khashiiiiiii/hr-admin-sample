@@ -33,7 +33,7 @@ export const testsColumns: ColumnDef<TTests>[] = [
         {/* <div
           className={styles.arrow}
           onClick={() => {
-            console.log(row.subRows, 'subrows')
+
             log(row, 'row')
             row.getIsExpanded()
               ? row.toggleExpanded(false)

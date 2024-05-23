@@ -1,0 +1,10 @@
+.wrapper {
+  @apply flex flex-col gap-[24px] justify-between items-start py-[54px] px-[32px] relative;
+  h1 {
+    @apply text-[28px] text-[#1B1D22] font-medium;
+  }
+
+  .questionsOuterWrapper {
+    @apply w-full flex items-center justify-center;
+  }
+}

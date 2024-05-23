@@ -164,7 +164,6 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
     accessorKey: "actions",
     header: "",
     cell: ({ row }) => {
-      console.log(row, "row");
       return (
         <div className={styles.subTableActions}>
           <Button

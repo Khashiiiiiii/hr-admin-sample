@@ -1,0 +1,59 @@
+.wrapper {
+  @apply w-[676px] flex flex-col gap-[24px];
+  .counter {
+    @apply absolute top-[26px] left-[40px] text-[#686E78] text-[18px] font-light;
+  }
+
+  .questionsWrapper {
+    @apply flex flex-col gap-[24px] bg-[#FFFFFF] rounded-[12px] py-[32px] px-[70px];
+    .questionWrapper {
+      @apply flex flex-col gap-[32px];
+      h3 {
+        @apply text-[#1B1D22] text-[22px] font-normal;
+      }
+
+      .radioGroup {
+        @apply flex  gap-[8px] self-start;
+        .radioItem {
+          @apply flex w-[100px] flex-col items-center justify-center gap-[12px];
+          .radio {
+            @apply relative m-0 h-[20px] w-[20px] rounded-full  bg-transparent p-0 text-transparent outline-none ring-0 aria-checked:border-[#EC008C];
+            border-color: #dee0e3;
+            border-width: 2px;
+            span {
+              @apply absolute left-1/2 top-1/2 inline-block h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#EC008C];
+              svg {
+                @apply hidden;
+              }
+            }
+          }
+        }
+        .radioItem1 {
+          @apply flex w-[40px] flex-col items-center justify-center gap-[12px];
+          .radio {
+            @apply relative m-0 h-[20px] w-[20px] rounded-full  bg-transparent p-0 text-transparent outline-none ring-0 aria-checked:border-[#EC008C];
+            border-color: #dee0e3;
+            border-width: 2px;
+            span {
+              @apply absolute left-1/2 top-1/2 inline-block h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#EC008C];
+              svg {
+                @apply hidden;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .btnGroup {
+    @apply flex items-center gap-[24px] justify-between w-fit;
+
+    .next {
+      @apply bg-[#00AEEF] text-[#FDFDFF] text-[18px] font-normal rounded-[12px] px-[85.5px] py-[8px];
+    }
+    .prev {
+      @apply border-[#00AEEF] border-[1px] bg-transparent rounded-[12px] text-[#00AEEF] text-[18px] py-[8px] px-[30px];
+    }
+  }
+}
