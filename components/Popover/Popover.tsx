@@ -75,6 +75,7 @@ const Popover = ({ type }: { type: "position" | "departement" }) => {
         }).then((res) => {
           setTablesRows(res);
           setTableRowsLoading(false);
+          setLoading(false);
         });
       } else {
         getEmployeeList({
@@ -87,6 +88,7 @@ const Popover = ({ type }: { type: "position" | "departement" }) => {
         }).then((res) => {
           setTablesRows(res);
           setTableRowsLoading(false);
+          setLoading(false);
         });
       }
     }

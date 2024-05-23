@@ -1,7 +1,5 @@
 // utils/httpService.ts
 
-import { auth } from "@/auth";
-
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL; // Replace with your actual base URL
 
 type RequestOptions = RequestInit & {

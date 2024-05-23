@@ -124,6 +124,7 @@ export function DataTable<TData, TValue>({
     if (type === "employee") {
       table.resetExpanded();
       table.resetRowSelection(false);
+      setSelected([]);
       setTableRowsLoading(true);
 
       getEmployeeList({
