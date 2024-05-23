@@ -139,15 +139,26 @@ export const TableActionCell = ({
   const [department, setDepartment] = useState<string>("");
 
   useEffect(() => {
-    const selected = row.original.departements.find(
-      (row) => row.name === department
-    );
+    console.log(department, "departement");
+    if (department === "all") {
+      const selected = row.original.departements.find((row) => row.name === "");
 
-    setAnalysisItem({
-      department: department,
-      participants: selected!.participants,
-      totalEmployees: selected!.totalEmployees,
-    });
+      setAnalysisItem({
+        department: department,
+        participants: selected!.participants,
+        totalEmployees: selected!.totalEmployees,
+      });
+    } else {
+      const selected = row.original.departements.find(
+        (row) => row.name === department
+      );
+
+      setAnalysisItem({
+        department: department,
+        participants: selected!.participants,
+        totalEmployees: selected!.totalEmployees,
+      });
+    }
   }, [department]);
 
   return (
