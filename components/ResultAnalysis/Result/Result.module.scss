@@ -1,0 +1,28 @@
+.resultChart {
+  @apply flex flex-col justify-between gap-[24px];
+  h3 {
+    @apply w-full flex justify-between items-center;
+  }
+
+  .tableWrapper {
+    > div {
+      @apply rounded-[12px] w-full;
+    }
+    .table {
+      .header {
+        .tableRow {
+          .tableHead {
+            @apply text-right border-[1px] first-of-type:w-[192px] p-[24px] text-[#686E78] text-[18px];
+          }
+        }
+      }
+      .tableBody {
+        .tableRow {
+          .tableCell {
+            @apply border-[1px] text-[#1B1D22] text-[18px] p-[24px];
+          }
+        }
+      }
+    }
+  }
+}

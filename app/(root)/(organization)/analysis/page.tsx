@@ -2,29 +2,20 @@ import { Search } from "@/components/Search";
 import styles from "./styles.module.scss";
 
 import { DataTable } from "@/components/Tables";
-import {
-  companiesColumns,
-  companiesSubColumns,
-  TCompanies,
-} from "@/components/Tables/Columns";
+import { organizationColumns } from "@/components/Tables/Columns";
 import { auth } from "@/auth";
 import { Metadata } from "next";
+import { getAllOrganizationExam } from "@/services";
+import { IGetAllOrganizationExam } from "@/interfaces";
 
-async function getCompaniesData(): Promise<TCompanies[]> {
-  return [
-    {
-      id: "1241479",
-      title: "دیزاین استودیو",
-      tests: [
-        {
-          id: "",
-          employersTotalCount: 423,
-          participantsCount: 74,
-          title: "رضایت شغلی",
-        },
-      ],
-    },
-  ];
+async function getAllExams(token: string): Promise<IGetAllOrganizationExam> {
+  try {
+    const data = await getAllOrganizationExam(token);
+    return data;
+  } catch (error) {
+    console.log(error, "error");
+    throw new Error("Failed to fetch data");
+  }
 }
 
 export const metadata: Metadata = {
@@ -32,8 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default async function AnalysisPage() {
-  const data = await getCompaniesData();
   const session = await auth();
+  const data = await getAllExams(session?.user.accessToken!);
 
   return (
     <div className={styles.wrapper}>
@@ -41,12 +32,8 @@ export default async function AnalysisPage() {
         {/* @ts-ignore  */}
         <Search placeholder="سازمان‌ها" />
       </div>
-
-      {/* <DataTable
-        columns={companiesColumns}
-        data={data}
-        subColumns={companiesSubColumns}
-      /> */}
+      {/* @ts-ignore  */}
+      <DataTable columns={organizationColumns} data={data} />
     </div>
   );
 }

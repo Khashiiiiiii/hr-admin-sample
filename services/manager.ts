@@ -3,6 +3,8 @@ import {
   IGetExamsList,
   IPostCreateExamProps,
   IPostCreateExam,
+  IGetAllOrganizationExam,
+  IGetExamFullAnalysis,
 } from "@/interfaces";
 
 import { get, post } from "@/utils";
@@ -20,6 +22,12 @@ export const postCreateExam = async ({ token, body }: IPostCreateExamProps) =>
 export const getAllExams = async (token: string, id: string) =>
   await get<[]>(`questionaries/getAllExam/${id}`, token);
 
+export const getAllOrganizationExam = async (token: string) =>
+  await get<IGetAllOrganizationExam>(
+    `questionaries/getAllOrganizationExam`,
+    token
+  );
+
 export const getEmployeeAllExams = async (token: string, id: string) =>
   await get<IGetEmployeeAllExamsList>(
     `questionaries/getEmployeeAllExams/${id}`,
@@ -28,3 +36,13 @@ export const getEmployeeAllExams = async (token: string, id: string) =>
 
 export const getEmployeeExamDetail = async (token: string, id: string) =>
   await get<[]>(`questionaries/getEmployeeExamdetail/${id}`, token);
+
+export const getExamFullAnalys = async (
+  token: string,
+  params: { Exam: string; Department: string }
+) =>
+  await get<IGetExamFullAnalysis>(
+    "questionaries/getExamFullAnalys",
+    token,
+    params
+  );

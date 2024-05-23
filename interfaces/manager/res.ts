@@ -25,3 +25,32 @@ export interface IPostCreateExam {
   recipent: string;
   title: string;
 }
+
+export interface IGetAllOrganizationExam {
+  count: number;
+  next: string;
+  previous: string;
+  results: IGetOrganizationExam[];
+}
+
+export interface IGetOrganizationExam {
+  title: string;
+  departements: {
+    name: string;
+    totalEmployees: number;
+    participants: number;
+  }[];
+}
+
+export interface IGetExamFullAnalysis {
+  title: string;
+  organization: string;
+  description: string;
+  reports: IGetReport[];
+}
+export interface IGetReport {
+  id: number;
+  type: "bar" | "table" | "pie";
+  title: string;
+  data: { title: string; value: number }[];
+}

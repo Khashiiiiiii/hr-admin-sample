@@ -5,6 +5,9 @@ import {
   IGetEmployeeAllExamsList,
   IPostCreateExamProps,
   IPostCreateExam,
+  IGetAllOrganizationExam,
+  IGetOrganizationExam,
+  IGetExamFullAnalysis,
 } from "./manager";
 
 export type {
@@ -18,4 +21,7 @@ export type {
   IGetEmployeeAllExamsList,
   IPostCreateExamProps,
   IPostCreateExam,
+  IGetAllOrganizationExam,
+  IGetOrganizationExam,
+  IGetExamFullAnalysis,
 };

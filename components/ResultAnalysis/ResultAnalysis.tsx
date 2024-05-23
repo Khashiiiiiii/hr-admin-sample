@@ -1,32 +1,16 @@
-import { BarChart, PieChart } from '../Charts'
-import styles from './ResultAnalysis.module.scss'
+import styles from "./ResultAnalysis.module.scss";
+import { Result } from "./Result";
+import { IGetReport } from "@/interfaces/manager";
 
-const ResultAnalysis = ({
-  results
-}: {
-  results: {
-    type: 'pie' | 'bar'
-    title: string
-    data: { title: string; value: number }[]
-    color: string | string[]
-  }[]
-}) => {
+const ResultAnalysis = ({ results }: { results: IGetReport[] }) => {
+  console.log(results, "sdasidn");
   return (
     <div className={styles.wrapper}>
       {results.map((result, index) => (
-        <div className={styles.resultChart} key={index}>
-          <h3>
-            {index + 1}- {result.title}
-          </h3>
-          {result.type === 'pie' ? (
-            <PieChart data={result.data} colors={result.color as string[]} />
-          ) : (
-            <BarChart data={result.data} color={result.color as string} />
-          )}
-        </div>
+        <Result item={result} key={index} index={index} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default ResultAnalysis
+export default ResultAnalysis;

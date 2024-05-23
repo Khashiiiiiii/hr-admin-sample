@@ -1,116 +1,199 @@
-'use client'
+"use client";
 
+import { ColumnDef, Row } from "@tanstack/react-table";
+import styles from "./Analysis.module.scss";
+import TestReport from "@/components/svg/test-report.svg";
+import Link from "next/link";
+import { IGetOrganizationExam } from "@/interfaces";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import { ColumnDef } from '@tanstack/react-table'
-import styles from './Analysis.module.scss'
-import { Button } from '@/components/ui/button'
-import MoreSvg from '@/components/svg/more.svg'
-import ArrowUp from '@/components/svg/arrow-up.svg'
-import ArrowDown from '@/components/svg/arrow-down.svg'
-import TestReport from '@/components/svg/test-report.svg'
-import TestAnalysis from '@/components/svg/test-analysis.svg'
-import Link from 'next/link'
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useStore } from "@/store";
+import { useEffect, useState } from "react";
 
 export type TTests = Array<{
-  id: string
-  title: string
-  participantsCount: number
-  employersTotalCount: number
-}>
+  id: string;
+  title: string;
+  participantsCount: number;
+  employersTotalCount: number;
+}>;
 
 export type TCompanies = {
-  id: string
-  title: string
-  tests?: TTests
-}
+  id: string;
+  title: string;
+  tests?: TTests;
+};
 
-export const companiesColumns: ColumnDef<TCompanies>[] = [
-  {
-    accessorKey: 'title',
-    header: 'عنوان سازمان'
-  },
-  {
-    accessorKey: 'actions',
-    header: '',
-    cell: ({ row }) => (
-      <div className={styles.actions}>
-        <div
-          className={styles.arrow}
-          onClick={() => {
-            row.getIsExpanded()
-              ? row.toggleExpanded(false)
-              : row.toggleExpanded(true)
-          }}
-        >
-          {row.getIsExpanded() ? <ArrowUp /> : <ArrowDown />}
-        </div>
-      </div>
-    )
-  }
-]
+// export const organizationColumns: ColumnDef<IGetOrganizationExam>[] = [
+//   {
+//     accessorKey: "title",
+//     header: "نام آزمون",
+//   },
+//   {
+//     accessorKey: "departements.participants",
+//     header: "تعداد شرکت‌کننده‌ها",
+//     cell: ({ row }) => (
+//       <span>
+//         {selectedDepartment === "all"
+//           ? row.original.departements.reduce(
+//               (acc, curr) => acc + curr.participants,
+//               0
+//             )
+//           : row.original.departements.find(
+//               (dep) => dep.name === selectedDepartment
+//             )?.participants}
+//       </span>
+//     ),
+//   },
+//   {
+//     accessorKey: "departements.totalEmployees",
+//     header: "تعداد کل کارمندان",
+//     cell: ({ row }) => (
+//       <span>
+//         {selectedDepartment === "all"
+//           ? row.original.departements.reduce(
+//               (acc, curr) => acc + curr.totalEmployees,
+//               0
+//             )
+//           : row.original.departements.find(
+//               (dep) => dep.name === selectedDepartment
+//             )?.totalEmployees}
+//       </span>
+//     ),
+//   },
 
-export const companiesSubColumns: ColumnDef<TTests>[] = [
+//   {
+//     accessorKey: "actions",
+//     header: "",
+//     cell: ({ row }) => (
+//       <div className={styles.actions}>
+//         <Select>
+//           <SelectTrigger className={styles.selectTrigger}>
+//             <SelectValue placeholder="واحد سازمانی" />
+//           </SelectTrigger>
+//           <SelectContent
+//             className={styles.selectContent}
+//             onChange={(e) => setSelectedDepartment(e.target.value)}
+//           >
+//             {row.original.departements.map((item, index) => (
+//               <SelectItem
+//                 key={index}
+//                 value={item.name === "" ? "all" : item.name}
+//                 className={styles.selectItem}
+//               >
+//                 {item.name === "" ? "همه" : item.name}
+//               </SelectItem>
+//             ))}
+//           </SelectContent>
+//         </Select>
+//         <Link
+//           href={`analysis/${row.original}`}
+//           className={styles.totalAnalysis}
+//         >
+//           <div>
+//             <TestReport />
+//           </div>
+//           تحلیل کلی
+//         </Link>
+//       </div>
+//     ),
+//   },
+// ];
+
+export const organizationColumns: ColumnDef<IGetOrganizationExam>[] = [
   {
-    accessorKey: 'title',
-    header: 'عنوان سازمان',
-    //@ts-ignore
-    cell: ({ row }) => <div className={styles.subTableTitle}>{row.title}</div>
+    accessorKey: "title",
+    header: "نام آزمون",
   },
   {
-    accessorKey: 'participantsCount',
-    header: 'تعداد شرکت‌کننده‌ها',
-    cell: ({ row }) => (
-      <div className={styles.subTitleCell}>
-        {
-          //@ts-ignore
-          row.participantsCount.toLocaleString('fa-IR')
-        }{' '}
-        نفر
-      </div>
-    )
+    accessorKey: "departements.participants",
+    header: "تعداد شرکت‌کننده‌ها",
+    cell: ({ row }) => <TableValueCell type="participants" />,
   },
   {
-    accessorKey: 'employersTotalCount',
-    header: 'تعداد کل کارمندان',
-    cell: ({ row }) => (
-      //@ts-ignore
-      <div className={styles.subTitleCell}>
-        {
-          //@ts-ignore
-          row.employersTotalCount.toLocaleString('fa-IR')
-        }{' '}
-        نفر
-      </div>
-    )
+    accessorKey: "departements.totalEmployees",
+    header: "تعداد کل کارمندان",
+    cell: ({ row }) => <TableValueCell type="total" />,
   },
   {
-    accessorKey: 'actions',
-    header: '',
-    cell: ({ row }) => {
-      return (
-        <div className={styles.subTableActions}>
-          <Link href='analysis/1' className={styles.analysisBtn}>
-            <span>
-              <TestReport />
-            </span>
-            تحلیل کلی
-          </Link>
-          <Popover>
-            <PopoverTrigger className={styles.more}>
-              <div>
-                <MoreSvg />
-              </div>
-            </PopoverTrigger>
-            <PopoverContent className={styles.subTableMoreContent}>
-              <Button>دانلود تحلیل (PDF)</Button>
-            </PopoverContent>
-          </Popover>
+    accessorKey: "actions",
+    header: "",
+    cell: ({ row }) => <TableActionCell row={row} />,
+  },
+];
+
+export const TableActionCell = ({
+  row,
+}: {
+  row: Row<IGetOrganizationExam>;
+}) => {
+  const setAnalysisItem = useStore((state) => state.setAnalysisItem);
+  const analysisItem = useStore((state) => state.analysisItem);
+
+  const [department, setDepartment] = useState<string>("");
+
+  useEffect(() => {
+    const selected = row.original.departements.find(
+      (row) => row.name === department
+    );
+
+    setAnalysisItem({
+      department: department,
+      participants: selected!.participants,
+      totalEmployees: selected!.totalEmployees,
+    });
+  }, [department]);
+
+  return (
+    <div className={styles.actions}>
+      <Select onValueChange={(value) => setDepartment(value)}>
+        <SelectTrigger className={styles.selectTrigger}>
+          <SelectValue placeholder="واحد سازمانی" />
+        </SelectTrigger>
+        <SelectContent className={styles.selectContent}>
+          {row.original.departements.map((item, index) => (
+            <SelectItem
+              key={index}
+              value={item.name === "" ? "all" : item.name}
+              className={styles.selectItem}
+            >
+              {item.name === "" ? "همه" : item.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Link
+        href={`analysis/${row.original.title}/${department === "" ? "all" : department}`}
+        className={styles.totalAnalysis}
+      >
+        <div>
+          <TestReport />
         </div>
-      )
-    }
-  }
-]
+        تحلیل کلی
+      </Link>
+    </div>
+  );
+};
+
+export const TableValueCell = ({
+  type,
+}: {
+  type: "total" | "participants";
+}) => {
+  const analysisItem = useStore((state) => state.analysisItem);
+  useEffect(() => {}, [analysisItem]);
+
+  return (
+    <span>
+      {type === "participants"
+        ? analysisItem.participants.toLocaleString("fa-IR")
+        : analysisItem.totalEmployees.toLocaleString("fa-IR")}
+    </span>
+  );
+};

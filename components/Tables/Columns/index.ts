@@ -2,23 +2,12 @@ import {
   contactColumns,
   contactSubColumns,
   TContacts,
-  TExams
-} from './Contacts'
+  TExams,
+} from "./Contacts";
 
-import { testsColumns, TTests } from './Tests'
-import {
-  TCompanies,
-  TTests as TCompaniesSub,
-  companiesColumns,
-  companiesSubColumns
-} from './Analysis'
+import { testsColumns, TTests } from "./Tests";
+import { organizationColumns } from "./Analysis";
 
-export {
-  contactColumns,
-  contactSubColumns,
-  testsColumns,
-  companiesColumns,
-  companiesSubColumns
-}
+export { contactColumns, contactSubColumns, testsColumns, organizationColumns };
 
-export type { TContacts, TExams, TTests, TCompanies, TCompaniesSub }
+export type { TContacts, TExams, TTests };

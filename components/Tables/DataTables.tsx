@@ -24,7 +24,13 @@ import { Button } from "../ui/button";
 
 import ArrowRight from "@/components/svg/arrow-right.svg";
 import ArrowLeft from "@/components/svg/arrow-left.svg";
-import { IEmployee, IEmployeeList, IGetExamsList } from "@/interfaces";
+import {
+  IEmployee,
+  IEmployeeList,
+  IGetAllOrganizationExam,
+  IGetExamsList,
+  IGetOrganizationExam,
+} from "@/interfaces";
 import { getEmployeeList } from "@/services";
 import { Session } from "next-auth";
 import { Skeleton } from "../ui/skeleton";
@@ -33,8 +39,10 @@ import { useStore } from "@/store";
 import { TestSend } from "../Modal/TestSend";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<IEmployee, TValue>[] | ColumnDef<IGetExamsList, TValue>[];
-  data: IEmployeeList;
+  columns:
+    | ColumnDef<IEmployee, TValue>[]
+    | ColumnDef<IGetOrganizationExam, TValue>[];
+  data: IEmployeeList | IGetAllOrganizationExam;
   subColumns?: ColumnDef<IEmployee, TValue>[];
   session: Session;
   type: "employee" | "test";
@@ -48,9 +56,9 @@ export function DataTable<TData, TValue>({
   session,
 }: DataTableProps<TData, TValue>) {
   const [expanded, setExpanded] = useState({});
-  const [tableData, setTableData] = useState<Array<IEmployee | IGetExamsList>>(
-    data.results
-  );
+  const [tableData, setTableData] = useState<
+    Array<IEmployee | IGetOrganizationExam>
+  >(data.results);
 
   const selectedRef = useRef(null);
   const initialRender = useRef(true);
@@ -216,6 +224,7 @@ export function DataTable<TData, TValue>({
                     <ExpandedRow
                       /* @ts-ignore */
                       columns={columns}
+                      /* @ts-ignore */
                       row={row}
                       /* @ts-ignore */
                       subColumns={subColumns}

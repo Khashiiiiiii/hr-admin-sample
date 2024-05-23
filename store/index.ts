@@ -10,6 +10,17 @@ interface IUseStore {
 
   tableRowsLoading: boolean;
   setTableRowsLoading: (tableRowsLoading: boolean) => void;
+
+  analysisItem: {
+    department: string;
+    totalEmployees: number;
+    participants: number;
+  };
+  setAnalysisItem: (analysisItem: {
+    department: string;
+    totalEmployees: number;
+    participants: number;
+  }) => void;
 }
 
 export const useStore = create<IUseStore>()((set) => ({
@@ -21,4 +32,10 @@ export const useStore = create<IUseStore>()((set) => ({
 
   tableRowsLoading: false,
   setTableRowsLoading: (tableRowsLoading: boolean) => set({ tableRowsLoading }),
+  analysisItem: { department: "", participants: 0, totalEmployees: 0 },
+  setAnalysisItem: (analysisItem: {
+    department: string;
+    totalEmployees: number;
+    participants: number;
+  }) => set({ analysisItem }),
 }));

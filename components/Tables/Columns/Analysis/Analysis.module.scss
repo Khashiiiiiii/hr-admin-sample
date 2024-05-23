@@ -1,36 +1,19 @@
 .actions {
-  @apply flex items-center justify-end gap-[20px] pl-[24px];
-  .arrow {
-    @apply cursor-pointer;
-  }
-}
-
-.subTitleCell {
-  @apply mr-[16px] text-[18px] font-normal text-[#323337];
-}
-
-.subTableTitle {
-  @apply py-[4px] text-[18px] font-medium text-[#323337] first-of-type:mr-[16px];
-}
-
-.subTableActions {
-  @apply flex items-center justify-end gap-[24px] pl-[24px];
-  .analysisBtn {
-    @apply flex items-center gap-[10px] rounded-[12px] border-[1px] border-[#686E78] bg-transparent px-[16px] py-[8px] text-[16px] font-normal text-[#686E78];
+  @apply flex items-center justify-end gap-[35px] pl-[70px];
+  .selectTrigger {
+    @apply border-[1px] border-[#DEE0E3] rounded-[12px] py-[8px] px-[16px] w-[160px] h-[44px] flex flex-row-reverse;
+    width: 160px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
   }
 
-  .more {
-    @apply border-0;
-    border: 0px !important;
+  .selectContent {
+    .selectItem {
+      @apply text-right;
+    }
   }
-}
 
-.subTableMoreContent {
-  @apply mt-[5px] h-fit w-[218px] rounded-[12px] border-[1px] border-[#7D7D7E1A] p-0;
-  button {
-    @apply h-[49px] w-full justify-start border-b-[0] bg-transparent text-[16px] text-black shadow-none hover:bg-black hover:text-white;
-  }
-  .downloadAnalysisBtn {
-    @apply rounded-none border-b-[1px] border-t-[1px] border-[#DEE0E3];
+  .totalAnalysis {
+    @apply flex items-center gap-[10px] px-[16px] py-[8px] border-[1px] border-[#686E78] rounded-[12px] text-[#686E78] text-[16px] font-normal;
   }
 }

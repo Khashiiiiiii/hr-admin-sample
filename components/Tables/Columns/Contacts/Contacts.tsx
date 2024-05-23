@@ -1,9 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import Edit from "@/components/svg/edit.svg";
 import styles from "./Contacts.module.scss";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import MoreSvg from "@/components/svg/more.svg";
@@ -32,18 +30,6 @@ export type TExams = {
   title: string;
   status: string;
 };
-
-export type TContacts = {
-  id: string;
-  firstname: string;
-  lastname: string;
-  position: string;
-  company: string;
-  email: string;
-  tests?: Array<TExams>;
-};
-
-const emailEditHandler = (id: string) => {};
 
 export const contactColumns: ColumnDef<IEmployee>[] = [
   {
@@ -109,30 +95,6 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
   {
     accessorKey: "email",
     header: "آدرس ایمیل",
-    // cell: ({ row }) => (
-    //   <ShadPopover>
-    //     <PopoverTrigger className={styles.emailTrigger}>
-    //       <div>
-    //         <Edit />
-    //       </div>
-    //       {row.getValue("email")}
-    //     </PopoverTrigger>
-    //     <PopoverContent className={styles.emailContent}>
-    //       <Input
-    //         type="email"
-    //         placeholder={`ایمیل`}
-    //         defaultValue={row.getValue("email")}
-    //         className={styles.emailInput}
-    //       />
-    //       <Button
-    //         className={styles.emailBtn}
-    //         onClick={() => emailEditHandler(row.original.id as string)}
-    //       >
-    //         ثبت
-    //       </Button>
-    //     </PopoverContent>
-    //   </ShadPopover>
-    // ),
   },
   {
     accessorKey: "actions",
@@ -189,7 +151,7 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
         className={cn(
           styles.subTableStatus,
           //@ts-ignore
-          row.data_filled && styles.done
+          row.ordata_filled && styles.done
         )}
       >
         {/* @ts-ignore */}
@@ -202,6 +164,7 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
     accessorKey: "actions",
     header: "",
     cell: ({ row }) => {
+      console.log(row, "row");
       return (
         <div className={styles.subTableActions}>
           <Button
@@ -214,11 +177,7 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
             </span>
             تحلیل آزمون
           </Button>
-          <Link
-            className={styles.deleteContact}
-            href={row.id}
-            //@ts-ignore
-          >
+          <Link className={styles.deleteContact} href={`/contacts/${row.id}`}>
             <span>
               <TestReport />
             </span>
@@ -236,12 +195,6 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
             </PopoverTrigger>
             <PopoverContent className={styles.subTableMoreContent}>
               <Button className={styles.sendTestAgain}>ارسال مجدد</Button>
-              {/* <Button className={styles.downloadAnalysisBtn}>
-                دانلود تحلیل (PDF)
-              </Button>
-              <Button className={styles.downloadReportBtn}>
-                دانلود پاسخ (PDF)
-              </Button> */}
             </PopoverContent>
           </ShadPopover>
         </div>
