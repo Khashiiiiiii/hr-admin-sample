@@ -17,7 +17,7 @@ const fetchWithTimeout = async (
 
   let response: Response;
 
-  if (options.body) {
+  if (options.body && !(options.body instanceof FormData)) {
     options = { ...options, body: JSON.stringify(options.body) };
   }
 

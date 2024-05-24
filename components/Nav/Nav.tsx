@@ -1,17 +1,18 @@
-import styles from './Nav.module.scss'
-import { Button } from '@/components/ui/button'
+import styles from "./Nav.module.scss";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { cn } from '@/lib/utils'
-import { BellIcon, ChevronDownIcon } from '@radix-ui/react-icons'
-import { signOut } from '@/auth'
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
+import { BellIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 const Nav = ({ className }: { className?: string }) => {
   return (
@@ -27,23 +28,23 @@ const Nav = ({ className }: { className?: string }) => {
               test@gmail.com
             </div>
             <Avatar>
-              <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback></AvatarFallback>
             </Avatar>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className='w-56'>
+        <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>test@gmail.com</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem className={styles.formWrapper}>
             <form
               action={async () => {
-                'use server'
-                await signOut()
+                "use server";
+                await signOut().then(redirect("/login"));
               }}
               className={styles.form}
             >
-              <Button type='submit' className={styles.exitBtn}>
+              <Button type="submit" className={styles.exitBtn}>
                 خروج
               </Button>
             </form>
@@ -51,7 +52,7 @@ const Nav = ({ className }: { className?: string }) => {
         </DropdownMenuContent>
       </DropdownMenu>
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

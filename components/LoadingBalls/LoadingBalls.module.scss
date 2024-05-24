@@ -1,0 +1,21 @@
+.wrapper {
+  @apply flex justify-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .ball {
+    @apply rounded-full w-[12px] h-[12px] bg-white;
+    margin: 0 3px;
+    animation: bounce 0.5s infinite alternate;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}

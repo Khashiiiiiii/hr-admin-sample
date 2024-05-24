@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Search } from "../Search";
 import { ExcelUpload } from "../Modal";
 import styles from "./TopSection.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useStore } from "@/store";
 import { getEmployeeList, getEmployeeSearch } from "@/services";
 import { useSession } from "next-auth/react";
@@ -44,8 +44,8 @@ const TopSection = ({ type }: { type: "employee" | "analysis" }) => {
       <div className={styles.btnGroup}>
         <Link
           className={styles.downloadLink}
-          href="/path/to/your/excel/file.xlsx"
-          download="Filename.xlsx"
+          href="/employeeSample.xlsx"
+          download="EmployeeSample.xlsx"
           target="_blank"
         >
           نمونه لیست کارمندان(Excel)

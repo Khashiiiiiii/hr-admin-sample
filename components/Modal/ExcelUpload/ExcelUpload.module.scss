@@ -2,6 +2,10 @@
   @apply border-[1px] border-[#00AEEF] bg-[#00AEEF] text-[18px] font-normal text-white hover:bg-white hover:text-[#00AEEF];
 }
 
+.disabled {
+  @apply opacity-50;
+}
+
 .file {
   @apply rounded-[12px] border-[1px] border-[#00AEEF] bg-white text-[18px] text-[#00AEEF] hover:bg-[#00AEEF] hover:text-white;
   :hover {
@@ -11,4 +15,22 @@
 
 .triggerText {
   @apply rounded-[12px] bg-[#00AEEF] px-[16px] py-[8px] text-[18px] font-normal text-white;
+}
+
+.fileName {
+  @apply flex gap-[90px] items-center;
+  div {
+    @apply w-[48px] h-[48px];
+  }
+
+  span {
+    @apply text-ellipsis overflow-hidden w-1/2 whitespace-nowrap;
+  }
+}
+
+.toastWrapper {
+  @apply flex w-full justify-between items-center gap-[16px];
+  .icon {
+    @apply w-[48px] h-[48px];
+  }
 }

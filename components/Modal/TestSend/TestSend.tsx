@@ -12,7 +12,15 @@ import { IEmployee } from "@/interfaces";
 import { useToast } from "@/components/ui/use-toast";
 import DoneSvg from "@/components/svg/done.svg";
 
-const TestSend = ({ selectedUsers }: { selectedUsers: IEmployee[] }) => {
+const TestSend = ({
+  selectedUsers,
+  triggerText,
+  triggreTextClassName,
+}: {
+  selectedUsers: IEmployee[];
+  triggerText?: string;
+  triggreTextClassName?: string;
+}) => {
   const [tests, setTests] = useState<{ key: string; name: string }[]>([]);
   const session = useSession();
   const access = session.data?.user.accessToken!;
@@ -68,9 +76,11 @@ const TestSend = ({ selectedUsers }: { selectedUsers: IEmployee[] }) => {
         </Button>
       }
       title="انتخاب آزمون"
-      triggerText="ارسال آزمون به مخاطبین"
+      triggerText={triggerText ? triggerText : "ارسال آزمون به مخاطبین"}
       className={styles.wrapper}
-      triggerTextClassName={styles.triggerText}
+      triggerTextClassName={
+        triggreTextClassName ? triggreTextClassName : styles.triggerText
+      }
       onOpenChange={() => setOpen((open) => !open)}
       open={open}
     >

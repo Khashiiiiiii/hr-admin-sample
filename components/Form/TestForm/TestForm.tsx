@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
 const TestForm = ({ questions }: { questions: IQuestion[] }) => {
-  console.log(questions, "questions");
   const {
     handleSubmit,
     formState: { errors },

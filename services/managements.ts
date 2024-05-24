@@ -15,8 +15,8 @@ export const deleteEmployeeDetail = async (token: string, id: string) =>
 export const getEmployeeList = async ({ token, params }: IEmployeeListProps) =>
   await get<IEmployeeList>(`managements/employeelist/`, token, params);
 
-export const postEmployeeList = async (token: string, file: FileSystem) =>
-  await post<[]>("managements/employeelist/", file, token);
+export const postEmployeeList = async (token: string, file: FormData) =>
+  await post("managements/employeelist/", file, token);
 
 export const getOrganizationDepartmentsFilters = async (token: string) =>
   await get<IOrganizationFilters>(

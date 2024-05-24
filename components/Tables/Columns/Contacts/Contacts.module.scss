@@ -34,14 +34,11 @@
   @apply h-[98px] w-[218px] rounded-[12px] border-[1px] border-[#7D7D7E1A] p-0;
 
   button {
-    @apply h-[50%] w-full justify-start bg-transparent text-[16px] shadow-none hover:bg-transparent;
-  }
-  .sendTest {
-    @apply border-b-[0] text-black hover:bg-black hover:text-white;
+    @apply h-[50%] w-full justify-start bg-transparent text-[16px] shadow-none;
   }
 
-  .deleteContact {
-    @apply border-t-0 text-[#DD4943] hover:bg-[#DD4943] hover:text-white;
+  .testSendText {
+    @apply border-b-[0] text-black hover:bg-black hover:text-white self-start text-right pr-[16px];
   }
 }
 

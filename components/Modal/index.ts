@@ -1,6 +1,7 @@
-import { ExcelUpload } from './ExcelUpload'
-import { TestUpload } from './TestUpload'
+import { ExcelUpload } from "./ExcelUpload";
+import { TestUpload } from "./TestUpload";
+import { UserDeletion } from "./UserDeletion";
 
-export { default as Modal } from './Modal'
+export { default as Modal } from "./Modal";
 
-export { ExcelUpload, TestUpload }
+export { ExcelUpload, TestUpload, UserDeletion };

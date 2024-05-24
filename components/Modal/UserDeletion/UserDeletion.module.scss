@@ -1,0 +1,20 @@
+.wrapper {
+  @apply rounded-[12px];
+}
+
+.triggerText {
+  @apply rounded-[12px] text-right px-[16px] py-[8px] text-[18px] font-normal border-t-0 text-[#DD4943] hover:bg-[#DD4943] hover:text-white hover:rounded-none;
+}
+
+.footer {
+  @apply flex justify-between gap-[24px] self-start;
+  button {
+    @apply bg-transparent shadow-none text-[16px] font-normal;
+  }
+  .delete {
+    @apply text-[#DD4943] bg-[#FFF0F0] px-[16px] py-[8px];
+  }
+  .cancel {
+    @apply text-[#686E78] hover:text-white;
+  }
+}

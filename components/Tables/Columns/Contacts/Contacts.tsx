@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/popover";
 import { Popover } from "@/components/Popover";
 import Link from "next/link";
+import { TestSend } from "@/components/Modal/TestSend";
+import { UserDeletion } from "@/components/Modal";
 
 export type TExams = {
   id: string;
@@ -99,32 +101,39 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
   {
     accessorKey: "actions",
     header: "",
-    cell: ({ row, table }) => (
-      <div className={styles.actions}>
-        <div
-          className={styles.arrow}
-          onClick={() => {
-            table.resetExpanded();
-            row.getIsExpanded()
-              ? row.toggleExpanded(false)
-              : row.toggleExpanded(true);
-          }}
-        >
-          {row.getIsExpanded() ? <ArrowUp /> : <ArrowDown />}
+    cell: ({ row, table }) => {
+      const deleteUserHandler = () => {};
+      return (
+        <div className={styles.actions}>
+          <div
+            className={styles.arrow}
+            onClick={() => {
+              table.resetExpanded();
+              row.getIsExpanded()
+                ? row.toggleExpanded(false)
+                : row.toggleExpanded(true);
+            }}
+          >
+            {row.getIsExpanded() ? <ArrowUp /> : <ArrowDown />}
+          </div>
+          <ShadPopover>
+            <PopoverTrigger className={styles.more}>
+              <div>
+                <MoreSvg />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className={styles.moreContent}>
+              <TestSend
+                selectedUsers={[{ ...row.original }]}
+                triggerText={"ارسال آزمون به مخاطب"}
+                triggreTextClassName={styles.testSendText}
+              />
+              <UserDeletion row={row} table={table} />
+            </PopoverContent>
+          </ShadPopover>
         </div>
-        <ShadPopover>
-          <PopoverTrigger className={styles.more}>
-            <div>
-              <MoreSvg />
-            </div>
-          </PopoverTrigger>
-          <PopoverContent className={styles.moreContent}>
-            <Button className={styles.sendTest}>ارسال آزمون به مخاطب</Button>
-            <Button className={styles.deleteContact}>حذف مخاطب</Button>
-          </PopoverContent>
-        </ShadPopover>
-      </div>
-    ),
+      );
+    },
   },
 ];
 

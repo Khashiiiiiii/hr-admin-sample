@@ -139,7 +139,6 @@ export const TableActionCell = ({
   const [department, setDepartment] = useState<string>("");
 
   useEffect(() => {
-    console.log(department, "departement");
     if (department === "all") {
       const selected = row.original.departements.find((row) => row.name === "");
 
