@@ -31,14 +31,18 @@ export default async function EmployeePage() {
       <div className={styles.tableOuterWrapper}>
         <ul>
           <li className={styles.header}>نام آزمون</li>
-          {data.map((exam, index) => (
-            <li key={index} className={styles.item}>
-              <span>{exam.name}</span>
-              <Link href={`employee/exam/${exam.id}`} className={styles.btn}>
-                شروع
-              </Link>
-            </li>
-          ))}
+          {data.length > 0 ? (
+            data.map((exam, index) => (
+              <li key={index} className={styles.item}>
+                <span>{exam.name}</span>
+                <Link href={`employee/exam/${exam.id}`} className={styles.btn}>
+                  شروع
+                </Link>
+              </li>
+            ))
+          ) : (
+            <p>آزمونی برای شما وجود ندارد</p>
+          )}
         </ul>
       </div>
     </div>

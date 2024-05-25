@@ -2,6 +2,9 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import "@/styles/globals.scss";
 import { cn, iranYekan } from "@/lib/utils";
+import { signOut } from "@/auth";
+import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "Next.js",
@@ -23,6 +26,18 @@ export default function EmployeeRootLayout({
             width={146}
             height={36.5}
           />
+
+          <form
+            action={async () => {
+              "use server";
+              await signOut().then(() => redirect("/login"));
+            }}
+            className={styles.form}
+          >
+            <Button type="submit" className={styles.exitBtn}>
+              خروج
+            </Button>
+          </form>
         </nav>
         <main className={styles.main}>{children}</main>
       </body>

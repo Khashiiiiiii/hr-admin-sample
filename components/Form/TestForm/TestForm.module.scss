@@ -10,6 +10,8 @@
       @apply flex flex-col gap-[32px];
       h3 {
         @apply text-[#1B1D22] text-[22px] font-normal;
+        hyphens: none;
+        word-break: keep-all;
       }
 
       .radioGroup {
@@ -49,7 +51,8 @@
   .btnGroup {
     @apply flex items-center gap-[24px] justify-between w-fit;
 
-    .next {
+    .next,
+    .submit {
       @apply bg-[#00AEEF] text-[#FDFDFF] text-[18px] font-normal rounded-[12px] px-[85.5px] py-[8px];
     }
     .prev {

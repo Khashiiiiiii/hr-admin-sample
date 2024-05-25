@@ -16,7 +16,7 @@ const TestForm = ({ questions }: { questions: IQuestion[] }) => {
   } = useForm();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = questions.length / 5 + 1;
+  const pageSize = Math.ceil(questions.length / 5);
 
   const indexOfLastQuestion = currentPage * pageSize;
   const indexOfFirstQuestion = indexOfLastQuestion - pageSize;
@@ -29,7 +29,8 @@ const TestForm = ({ questions }: { questions: IQuestion[] }) => {
     return currentQuestions.map((question, index) => (
       <div key={question.id} className={styles.questionWrapper}>
         <h3>
-          {(index + 1).toLocaleString("fa-IR")}- {question.question}
+          {(5 * (currentPage - 1) + (index + 1)).toLocaleString("fa-IR")}-{" "}
+          {question.question}
         </h3>
         {question.answers === null ? (
           <Textarea placeholder="اینجا بنویسید..." />
@@ -72,8 +73,12 @@ const TestForm = ({ questions }: { questions: IQuestion[] }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
       <div className={styles.counter}>
-        سوال {currentPage * currentQuestions.length} از{" "}
-        {questions.length.toLocaleString("fa-IR")}
+        سوال{" "}
+        {(currentPage * 5 > questions.length
+          ? questions.length
+          : currentPage * 5
+        ).toLocaleString("fa-IR")}{" "}
+        از {questions.length.toLocaleString("fa-IR")}
       </div>
       <div className={styles.questionsWrapper}>{renderQuestions()}</div>
       <div className={styles.btnGroup}>
