@@ -35,8 +35,6 @@ const UserDeletion = ({
         .getRowModel()
         .rows.filter((employee) => employee.id !== deletedId);
 
-      console.log(updatedResults, "updated");
-
       const updatedTableRows: IEmployeeList = {
         results: updatedResults.map((item) => item.original),
         count: table.getRowCount() - 1,
@@ -80,7 +78,7 @@ const UserDeletion = ({
         </div>
       }
       title="حذف کاربر"
-      triggerText="حذف مخاطب"
+      triggerText="حذف کارمند"
       className={styles.wrapper}
       triggerTextClassName={styles.triggerText}
       onOpenChange={() => setOpen((open) => !open)}

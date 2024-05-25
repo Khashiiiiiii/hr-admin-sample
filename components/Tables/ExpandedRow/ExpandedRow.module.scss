@@ -16,6 +16,30 @@
         .tableRow {
           @apply h-[73px];
         }
+        .skeletonWrapper {
+          @apply h-[76px];
+          .tableCell {
+            @apply first-of-type:pr-[26px];
+          }
+          .square {
+            @apply h-[24px] w-[24px];
+          }
+          .rect {
+            @apply h-[28px];
+          }
+
+          .rectSm {
+            @apply w-[42px];
+          }
+
+          .rectMd {
+            @apply w-[150px];
+          }
+
+          .rectLg {
+            @apply w-[250px];
+          }
+        }
       }
     }
   }

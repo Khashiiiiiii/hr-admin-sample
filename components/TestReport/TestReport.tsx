@@ -3,38 +3,16 @@ import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import styles from "./TestReport.module.scss";
 import DownloadIcon from "@/components/svg/download.svg";
+import { IQuestion } from "@/interfaces";
+import { Textarea } from "../ui/textarea";
 
-const TestReport = () => {
-  const questions = [
-    {
-      type: "radio",
-      title:
-        "۱-در مقایسه با سازمانهای مشابه و کار و فعالیتم، احساس می­کنم حقوق و مزایایم در محدوده قابل قبول است",
-      defaultValue: "disagreed",
-    },
-    {
-      type: "radio",
-      title:
-        "۲- در درون سازمان، در مقایسه با دیگر کارکنان حقوق و مزایایم عادلانه است.",
-      defaultValue: "fully agreed",
-    },
-    {
-      type: "radio",
-      title:
-        "۳- در این سازمان امکانات رفاهی به طور عادلانه بین کارکنان توزیع می­ شود.",
-      defaultValue: "somehow",
-    },
-    {
-      type: "radio",
-      title: "۴- شغل و مسئولیت من با توانایی هایم متناسب است.",
-      defaultValue: "fully disagreed",
-    },
-    {
-      type: "radio",
-      title: "۵- اکثر اوقات از مشاهده نتایج کارم احساس خشنودی می­ کنم.",
-      defaultValue: "fully agreed",
-    },
-  ];
+const TestReport = ({
+  data,
+  answers,
+}: {
+  data: IQuestion[];
+  answers: string[];
+}) => {
   return (
     <div className={styles.wrapper}>
       <Link
@@ -50,54 +28,52 @@ const TestReport = () => {
         دانلود پاسخ
       </Link>
       <ol className={styles.questionsWrapper}>
-        {questions.map((item) => (
-          <li key={item.title}>
-            <p>{item.title}</p>
-            <RadioGroup
-              className={styles.radioGroup}
-              defaultValue={item.defaultValue}
-            >
-              <div className={styles.radioItem}>
-                <Label htmlFor="fully-agreed">کاملا موافقم</Label>
-                <RadioGroupItem
-                  value="fully agreed"
-                  id="fully-agreed"
-                  className={styles.radio}
-                />
-              </div>
-              <div className={styles.radioItem}>
-                <Label htmlFor="agreed">موافقم</Label>
-                <RadioGroupItem
-                  value="agreed"
-                  id="agreed"
-                  className={styles.radio}
-                />
-              </div>
-              <div className={styles.radioItem}>
-                <Label htmlFor="somehow">تاحدودی</Label>
-                <RadioGroupItem
-                  value="somehow"
-                  id="somehow"
-                  className={styles.radio}
-                />
-              </div>
-              <div className={styles.radioItem}>
-                <Label htmlFor="disagreed">مخالفم</Label>
-                <RadioGroupItem
-                  value="disagreed"
-                  id="disagreed"
-                  className={styles.radio}
-                />
-              </div>
-              <div className={styles.radioItem}>
-                <Label htmlFor="fully-disagreed">کاملا مخالفم</Label>
-                <RadioGroupItem
-                  value="fully disagreed"
-                  id="fully-disagreed"
-                  className={styles.radio}
-                />
-              </div>
-            </RadioGroup>
+        {data.map((question, index) => (
+          <li key={question.id}>
+            <p>
+              {(index + 1).toLocaleString("fa-IR")}- {question.question}
+            </p>
+            {question.answers === null ? (
+              <Textarea defaultValue={answers[index]} disabled />
+            ) : question.answers.length > 5 ? (
+              <RadioGroup
+                className={styles.radioGroup}
+                defaultValue={`${answers[index]}`}
+                disabled
+              >
+                {question.answers.map((answer) => (
+                  <div className={styles.radioItem1}>
+                    <Label htmlFor={answer.title}>
+                      {typeof answer.title === "string"
+                        ? (+answer.title).toLocaleString("fa-IR")
+                        : answer.title}
+                    </Label>
+                    <RadioGroupItem
+                      id={answer.title}
+                      className={styles.radio}
+                      value={`${answer.value}`}
+                    />
+                  </div>
+                ))}
+              </RadioGroup>
+            ) : (
+              <RadioGroup
+                className={styles.radioGroup}
+                defaultValue={`${answers[index]}`}
+                disabled
+              >
+                {question.answers.map((answer) => (
+                  <div className={styles.radioItem}>
+                    <Label htmlFor={answer.title}>{answer.title}</Label>
+                    <RadioGroupItem
+                      value={`${answer.value}`}
+                      id={answer.title}
+                      className={styles.radio}
+                    />
+                  </div>
+                ))}
+              </RadioGroup>
+            )}
           </li>
         ))}
       </ol>

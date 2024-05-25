@@ -5,6 +5,7 @@ import {
   IPostCreateExam,
   IGetAllOrganizationExam,
   IGetExamFullAnalysis,
+  IGetEmployeeExamDetail,
 } from "@/interfaces";
 
 import { get, post } from "@/utils";
@@ -35,7 +36,10 @@ export const getEmployeeAllExams = async (token: string, id: string) =>
   );
 
 export const getEmployeeExamDetail = async (token: string, id: string) =>
-  await get<[]>(`questionaries/getEmployeeExamdetail/${id}`, token);
+  await get<IGetEmployeeExamDetail>(
+    `questionaries/getEmployeeExamdetail/${id}`,
+    token
+  );
 
 export const getExamFullAnalys = async (
   token: string,

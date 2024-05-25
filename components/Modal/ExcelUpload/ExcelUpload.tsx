@@ -56,10 +56,6 @@ const ExcelUpload = () => {
     fileInputRef.current!.click();
   };
 
-  useEffect(() => {
-    console.log(file, "file");
-  }, [file]);
-
   return (
     <Modal
       FooterNode={
@@ -74,9 +70,9 @@ const ExcelUpload = () => {
           بارگذاری
         </Button>
       }
-      title="لیست مخاطبین"
-      description="اکسل مخاطبین را بارگذاری کنید"
-      triggerText="بارگذاری لیست مخاطبین (Excel)"
+      title="لیست کارمندان"
+      description="اکسل کارمندان را بارگذاری کنید"
+      triggerText="بارگذاری لیست کارمندان (Excel)"
       className={styles.wrapper}
       triggerTextClassName={styles.triggerText}
       onOpenChange={() => setOpen((open) => !open)}

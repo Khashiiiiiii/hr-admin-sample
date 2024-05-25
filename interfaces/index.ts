@@ -8,6 +8,8 @@ import {
   IGetAllOrganizationExam,
   IGetOrganizationExam,
   IGetExamFullAnalysis,
+  IQuestion,
+  IGetEmployeeExamDetail,
 } from "./manager";
 import { IGetEmployeeRemainingExams, IGetEmployeeExam } from "./employee";
 
@@ -27,4 +29,6 @@ export type {
   IGetExamFullAnalysis,
   IGetEmployeeRemainingExams,
   IGetEmployeeExam,
+  IQuestion,
+  IGetEmployeeExamDetail,
 };

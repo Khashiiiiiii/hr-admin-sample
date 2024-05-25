@@ -76,7 +76,7 @@ const TestSend = ({
         </Button>
       }
       title="انتخاب آزمون"
-      triggerText={triggerText ? triggerText : "ارسال آزمون به مخاطبین"}
+      triggerText={triggerText ? triggerText : "ارسال آزمون به کارمندان"}
       className={styles.wrapper}
       triggerTextClassName={
         triggreTextClassName ? triggreTextClassName : styles.triggerText

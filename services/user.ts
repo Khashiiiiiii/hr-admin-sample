@@ -1,12 +1,17 @@
-import { ILogin, ILoginProps } from '@/interfaces'
-import { post } from '@/utils'
+import { ILogin, ILoginProps } from "@/interfaces";
+import { post } from "@/utils";
 
-export const login = async (credentials: ILoginProps) =>
-  await post<ILogin>(`api/token/`, credentials, undefined, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+export const login = async (credentials: ILoginProps) => {
+  try {
+    return await post<ILogin>("api/token/", credentials, undefined, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error: any) {
+    throw new Error("Status", { cause: error.cause });
+  }
+};
 
 export const refreshToken = async (refresh: string) =>
   await post<{ refresh: string; access: string }>(
@@ -15,14 +20,14 @@ export const refreshToken = async (refresh: string) =>
     undefined,
     {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     }
-  )
+  );
 
 export const tokenVerify = async (token: string) =>
-  await post<{ token: string }>('api/token/verify/', token, undefined, {
+  await post<{ token: string }>("api/token/verify/", token, undefined, {
     headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+      "Content-Type": "application/json",
+    },
+  });

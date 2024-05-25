@@ -40,7 +40,7 @@ const Nav = ({ className }: { className?: string }) => {
             <form
               action={async () => {
                 "use server";
-                await signOut().then(redirect("/login"));
+                await signOut().then(() => redirect("/login"));
               }}
               className={styles.form}
             >

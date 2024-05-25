@@ -54,3 +54,23 @@ export interface IGetReport {
   title: string;
   data: { title: string; value: number }[];
 }
+
+export interface IGetEmployeeExamDetail {
+  exam: {
+    id: number;
+    name: string;
+    date_created: string;
+    date_filled: string | null;
+    answer: string[] | null;
+    department: string;
+    owner: number;
+    ownerName: string;
+  };
+
+  questions: IQuestion[];
+}
+export interface IQuestion {
+  id: number;
+  question: string;
+  answers: { title: string; value: number }[];
+}

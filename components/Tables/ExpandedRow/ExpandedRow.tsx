@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { IExam } from "@/interfaces/manager";
 import { getEmployeeAllExams } from "@/services";
 import { useSession } from "next-auth/react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 const ExpandedRow = ({
   row,
@@ -27,14 +29,17 @@ const ExpandedRow = ({
 }) => {
   const [subtableData, setSubTableData] = useState<IExam[]>();
   const session = useSession();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     // @ts-ignore
     getEmployeeAllExams(session.data?.user.accessToken!, row.original.id)
       .then((res) => {
         setSubTableData(res.results);
       })
-      .catch((err) => console.log(err, "errrp"));
+      .catch((err) => console.log(err, "errrp"))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -58,7 +63,23 @@ const ExpandedRow = ({
             </TableRow>
           </TableHeader>
           <TableBody className={styles.tableBody}>
-            {subtableData ? (
+            {loading ? (
+              <>
+                {[...Array(2)].map((_, index) => (
+                  <TableRow key={index} className={styles.skeletonWrapper}>
+                    {[...Array(5)].map((_, index) => (
+                      <TableCell key={index} className={styles.tableCell}>
+                        <Skeleton
+                          className={cn(
+                            index === 0 ? styles.square : styles.rect
+                          )}
+                        />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </>
+            ) : subtableData ? (
               subtableData.map((subRow) => (
                 <TableRow key={subRow.id} className={styles.tableRow}>
                   {subColumns?.map((subColumn) => (
@@ -76,7 +97,7 @@ const ExpandedRow = ({
                 </TableRow>
               ))
             ) : (
-              <>هیج آزمون وجود ندارد</>
+              <TableCell>هیج آزمون وجود ندارد</TableCell>
             )}
           </TableBody>
         </Table>

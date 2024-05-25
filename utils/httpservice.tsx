@@ -27,7 +27,9 @@ const fetchWithTimeout = async (
 
   clearTimeout(id);
   if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    throw new Error(`HTTP error! Status: ${response.status}`, {
+      cause: response.status,
+    });
   }
   return response;
 };
@@ -44,6 +46,7 @@ async function fetchJSON<T>(
       throw new Error("Response was not JSON");
     }
   } catch (error) {
+    console.log(error, "error in fetch json");
     throw error;
   }
 }

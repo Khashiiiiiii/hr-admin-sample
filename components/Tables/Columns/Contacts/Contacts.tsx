@@ -102,7 +102,6 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
     accessorKey: "actions",
     header: "",
     cell: ({ row, table }) => {
-      const deleteUserHandler = () => {};
       return (
         <div className={styles.actions}>
           <div
@@ -125,7 +124,7 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
             <PopoverContent className={styles.moreContent}>
               <TestSend
                 selectedUsers={[{ ...row.original }]}
-                triggerText={"ارسال آزمون به مخاطب"}
+                triggerText={"ارسال آزمون به کارمند"}
                 triggreTextClassName={styles.testSendText}
               />
               <UserDeletion row={row} table={table} />
@@ -185,12 +184,27 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
             </span>
             تحلیل آزمون
           </Button>
-          <Link className={styles.deleteContact} href={`/contacts/${row.id}`}>
-            <span>
-              <TestReport />
-            </span>
-            مشاهده پاسخ
-          </Link>
+          {/* @ts-ignore */}
+          {row.date_filled !== null ? (
+            <Link className={styles.deleteContact} href={`/contacts/${row.id}`}>
+              <span>
+                <TestReport />
+              </span>
+              مشاهده پاسخ
+            </Link>
+          ) : (
+            <Button
+              className={styles.sendTest}
+              //@ts-ignore
+              disabled
+            >
+              <span>
+                <TestReport />
+              </span>
+              مشاهده پاسخ
+            </Button>
+          )}
+
           <ShadPopover>
             <PopoverTrigger
               className={styles.more}
