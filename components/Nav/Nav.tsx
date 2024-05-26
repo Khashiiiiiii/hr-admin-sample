@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./Nav.module.scss";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,10 +13,11 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { BellIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { signOut } from "@/auth";
-import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react"
+import {  useRouter } from "next/navigation";
 
 const Nav = ({ className }: { className?: string }) => {
+  const router = useRouter()
   return (
     <nav className={cn(styles.wrapper, className)}>
       {/* <Button variant='outline' size='icon' className={styles.btn}>
@@ -39,8 +42,7 @@ const Nav = ({ className }: { className?: string }) => {
           <DropdownMenuItem className={styles.formWrapper}>
             <form
               action={async () => {
-                "use server";
-                await signOut().then(() => redirect("/login"));
+                await signOut().then(() => router.refresh());
               }}
               className={styles.form}
             >

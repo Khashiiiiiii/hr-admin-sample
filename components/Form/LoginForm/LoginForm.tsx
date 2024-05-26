@@ -51,7 +51,7 @@ export default function LoginForm() {
       setLoading(false);
       setError("نام کاربری یا پسورد اشتباه است");
     } else {
-      router.push(login!.url! as string);
+      router.refresh();
     }
     setLoading(false);
   }
