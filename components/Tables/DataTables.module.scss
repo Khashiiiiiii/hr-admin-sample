@@ -9,113 +9,128 @@
         .tableRow {
           @apply h-[76px];
           .tableHead {
-            @apply text-right text-[18px] first-of-type:pr-[26px] first-of-type:max-w-[80px];
-            button {
-              @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+            @apply text-right text-[18px] first-of-type:pr-[26px] first-of-type:w-[100px];
+            :nth-child(2) {
+              @apply w-[50px];
             }
-            :nth-of-type(2) {
-              @apply max-w-[80px];
+            :nth-child(3) {
+              @apply w-[135px];
+            }
+            :nth-child(4) {
+              @apply w-[170px];
+            }
+          }
+          :nth-child(5) {
+            @apply w-[200px];
+          }
+          :nth-child(6) {
+            @apply w-[300px];
+          }
+          button {
+            @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+          }
+          :nth-of-type(2) {
+            @apply max-w-[80px];
+          }
+        }
+      }
+    }
+
+    .tableBody {
+      .skeletonWrapper {
+        @apply h-[76px];
+        .tableCell {
+          @apply first-of-type:pr-[26px];
+        }
+        .square {
+          @apply h-[24px] w-[24px];
+        }
+        .rect {
+          @apply h-[28px];
+        }
+
+        .rectSm {
+          @apply w-[42px];
+        }
+
+        .rectMd {
+          @apply w-[150px];
+        }
+
+        .rectLg {
+          @apply w-[250px];
+        }
+      }
+      .tableRow {
+        @apply h-[76px];
+        .tableCell {
+          @apply text-[18px] font-normal text-[#1B1D22] first-of-type:pr-[26px];
+          button {
+            @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
+          }
+        }
+      }
+      .expandedTableRow {
+        .tableCell {
+          @apply p-0;
+          .innerTable {
+            @apply bg-[#FCFCFC];
+            .tableHeader {
+              .subTableHeader {
+                @apply h-[73px] border-b-[1px];
+                .subTableHead {
+                  @apply pr-[24px] text-right text-[16px] font-normal text-[#686E78];
+                }
+              }
+            }
+
+            .tableBody {
+              .tableRow {
+                @apply h-[73px];
+              }
             }
           }
         }
       }
-
-      .tableBody {
-        .skeletonWrapper {
-          @apply h-[76px];
-          .tableCell {
-            @apply first-of-type:pr-[26px];
-          }
-          .square {
-            @apply h-[24px] w-[24px];
-          }
-          .rect {
-            @apply h-[28px];
-          }
-
-          .rectSm {
-            @apply w-[42px];
-          }
-
-          .rectMd {
-            @apply w-[150px];
-          }
-
-          .rectLg {
-            @apply w-[250px];
-          }
-        }
-        .tableRow {
-          @apply h-[76px];
-          .tableCell {
-            @apply text-[18px] font-normal text-[#1B1D22] first-of-type:pr-[26px];
-            button {
-              @apply h-[24px] w-[24px] rounded-[7px] border-[1.5px] border-[#DEE0E3] aria-checked:border-[#EC008C] aria-checked:bg-[#F680C5];
-            }
-          }
-        }
-        .expandedTableRow {
-          .tableCell {
-            @apply p-0;
-            .innerTable {
-              @apply bg-[#FCFCFC];
-              .tableHeader {
-                .subTableHeader {
-                  @apply h-[73px] border-b-[1px];
-                  .subTableHead {
-                    @apply pr-[24px] text-right text-[16px] font-normal text-[#686E78];
-                  }
-                }
-              }
-
-              .tableBody {
-                .tableRow {
-                  @apply h-[73px];
-                }
-              }
-            }
-          }
-        }
-        .activeTableRow {
-          @apply flex-col bg-[#FAFAFA];
-        }
+      .activeTableRow {
+        @apply flex-col bg-[#FAFAFA];
       }
+    }
 
-      .tableFooter {
-        .selectedWrapper {
-          -webkit-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
-          -moz-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
-          box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
-          @apply justify-between items-center bg-white rounded-[12px] w-full h-[92px];
-          .text {
-            @apply text-[18px] font-medium text-center text-[#1B1D22] max-w-fit pr-[15px];
-          }
-          .button {
-            @apply text-center;
-            button {
-              @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
-            }
+    .tableFooter {
+      .selectedWrapper {
+        -webkit-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+        -moz-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+        box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
+        @apply justify-between items-center bg-white rounded-[12px] w-full h-[92px];
+        .text {
+          @apply text-[18px] font-medium text-start text-[#1B1D22] max-w-fit;
+        }
+        .button {
+          @apply text-center;
+          button {
+            @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
           }
         }
       }
     }
   }
+}
 
-  .paginationWrapper {
-    @apply flex w-full items-center justify-between;
-    .pagination {
-      @apply flex items-center gap-[12px];
-      button {
-        @apply flex cursor-pointer items-center gap-[8px] bg-transparent text-black shadow-none;
+.paginationWrapper {
+  @apply flex w-full items-center justify-between;
+  .pagination {
+    @apply flex items-center gap-[12px];
+    button {
+      @apply flex cursor-pointer items-center gap-[8px] bg-transparent text-black shadow-none;
+    }
+    .pagesWrapper {
+      @apply flex flex-row-reverse gap-[8px];
+      span {
+        @apply cursor-pointer;
       }
-      .pagesWrapper {
-        @apply flex flex-row-reverse gap-[8px];
-        span {
-          @apply cursor-pointer;
-        }
-        .activePage {
-          @apply text-[#EC008C];
-        }
+      .activePage {
+        @apply text-[#EC008C];
       }
     }
   }

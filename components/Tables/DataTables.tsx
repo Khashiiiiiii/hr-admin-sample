@@ -159,8 +159,14 @@ export function DataTable<TData, TValue>({
           .getSelectedRowModel()
           .flatRows.map((item) => item.original as IEmployee)
       );
+    } else {
+      setSelected([]);
     }
   }, [table.getSelectedRowModel()]);
+
+  useEffect(() => {
+    console.log(selected, "selected");
+  }, [selected]);
 
   return (
     <div className={styles.wholeCompWrapper}>
@@ -248,11 +254,13 @@ export function DataTable<TData, TValue>({
           {selected.length > 0 && (
             <TableFooter className={styles.tableFooter}>
               <TableRow className={styles.selectedWrapper} ref={selectedRef}>
+                <TableCell />
+
                 <TableCell className={styles.text}>
                   {selected.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
                   {selected.length > 1 ? "اند" : "است"}
                 </TableCell>
-                {[...Array(5)].map(() => (
+                {[...Array(4)].map(() => (
                   <TableCell />
                 ))}
 
