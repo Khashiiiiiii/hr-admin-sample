@@ -164,10 +164,6 @@ export function DataTable<TData, TValue>({
     }
   }, [table.getSelectedRowModel()]);
 
-  useEffect(() => {
-    console.log(selected, "selected");
-  }, [selected]);
-
   return (
     <div className={styles.wholeCompWrapper}>
       <div className={styles.outerWrapper}>
