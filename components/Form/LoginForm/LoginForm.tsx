@@ -72,7 +72,7 @@ export default function LoginForm() {
           render={({ field }) => (
             <FormItem className={styles.emailInput}>
               <FormControl>
-                <Input placeholder="ایمیل" {...field} />
+                <Input placeholder="نام کاربری" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
