@@ -58,5 +58,16 @@
     .prev {
       @apply border-[#00AEEF] border-[1px] bg-transparent rounded-[12px] text-[#00AEEF] text-[18px] py-[8px] px-[30px];
     }
+
+    .disabled {
+      @apply opacity-50;
+    }
+  }
+}
+
+.toastWrapper {
+  @apply flex w-full justify-between items-center gap-[16px];
+  .icon {
+    @apply w-[48px] h-[48px];
   }
 }

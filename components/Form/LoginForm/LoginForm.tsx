@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import styles from "./LoginForm.module.scss";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -37,6 +37,12 @@ export default function LoginForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const [error, setError] = useState<string>("");
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      form.handleSubmit(onSubmit);
+    }
+  };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
@@ -91,6 +97,7 @@ export default function LoginForm() {
                   placeholder="رمز عبور"
                   {...field}
                   type={passwordShown ? "text" : "password"}
+                  onKeyDown={(event) => handleKeyDown(event)}
                 />
               </FormControl>
               <FormMessage />

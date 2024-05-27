@@ -20,7 +20,8 @@ import {
 import { postEmployeeExam } from "@/services";
 import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type FormInputs = {
   [key: string]: string;
@@ -34,8 +35,10 @@ const TestForm = ({
   examId: string;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const session = useSession();
   const { toast } = useToast();
+  const router = useRouter();
 
   const questionSchema = z.object({
     ...questions.reduce((acc, { id, answers }) => {
@@ -73,34 +76,36 @@ const TestForm = ({
     indexOfLastQuestion
   );
 
-  const onSubmit = (data: FormInputs) => {
-    const isValid = form.trigger().then((res) => res);
-
-    const response = Object.values(data);
-    postEmployeeExam(examId, session.data?.user.accessToken!, response).then(
-      () => {
-        toast({
-          duration: 3500,
-          children: (
-            <div className={styles.toastWrapper}>
-              <div className={styles.icon}>
-                <DoneSvg />
+  const onSubmit = async (data: FormInputs) => {
+    const isValid = await form.trigger().then((res) => res);
+    if (isValid) {
+      router.push("/employee");
+      const response = Object.values(data);
+      setLoading(true);
+      postEmployeeExam(examId, session.data?.user.accessToken!, response)
+        .then(() => {
+          toast({
+            duration: 3500,
+            children: (
+              <div className={styles.toastWrapper}>
+                <div className={styles.icon}>
+                  <DoneSvg />
+                </div>
+                <p>نتایج آزمون ارسال شد</p>
               </div>
-              <p>نتایج آزمون ارسال شد</p>
-            </div>
-          ),
-          style: {
-            background: "#EAFFF0",
-            borderColor: "#007132",
-            borderRadius: "12px",
-            borderWidth: "2px",
-            color: "#007132",
-          },
-        });
-
-        redirect("/employee");
-      }
-    );
+            ),
+            style: {
+              background: "#EAFFF0",
+              borderColor: "#007132",
+              borderRadius: "12px",
+              borderWidth: "2px",
+              color: "#007132",
+            },
+          });
+          router.push("/employee");
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
   const handleNextPage = async () => {
@@ -221,8 +226,9 @@ const TestForm = ({
           {currentPage === pageSize ? (
             <Button
               type="button"
-              className={styles.submit}
+              className={cn(styles.submit, loading && styles.disabled)}
               onClick={form.handleSubmit(onSubmit)}
+              disabled={loading}
             >
               ارسال
             </Button>
