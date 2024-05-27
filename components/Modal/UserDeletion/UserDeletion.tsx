@@ -22,7 +22,7 @@ const UserDeletion = ({
   const session = useSession();
   const [open, setOpen] = useState<boolean>(false);
   const { toast } = useToast();
-  const tableRows = useStore((state) => state.tableRows);
+
   const setTableRows = useStore((state) => state.setTableRows);
 
   const deleteHandler = () => {
@@ -51,7 +51,7 @@ const UserDeletion = ({
             <div className={styles.icon}>
               <DoneSvg />
             </div>
-            <p></p>
+            <p>کاربر با موفقیت حذف شد.</p>
           </div>
         ),
         style: {

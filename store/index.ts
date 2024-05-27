@@ -1,4 +1,4 @@
-import { IEmployeeList } from "@/interfaces";
+import { IEmployee, IEmployeeList } from "@/interfaces";
 import { create } from "zustand";
 
 interface IUseStore {
@@ -21,6 +21,9 @@ interface IUseStore {
     totalEmployees: number;
     participants: number;
   }) => void;
+
+  selectedUser: IEmployee[];
+  setSelectedUser: (selectedUser: IEmployee[]) => void;
 }
 
 export const useStore = create<IUseStore>()((set) => ({
@@ -38,4 +41,7 @@ export const useStore = create<IUseStore>()((set) => ({
     totalEmployees: number;
     participants: number;
   }) => set({ analysisItem }),
+
+  selectedUser: [],
+  setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));

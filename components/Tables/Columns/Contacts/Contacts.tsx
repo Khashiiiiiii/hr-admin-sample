@@ -126,6 +126,7 @@ export const contactColumns: ColumnDef<IEmployee>[] = [
                 selectedUsers={[{ ...row.original }]}
                 triggerText={"ارسال آزمون به کارمند"}
                 triggreTextClassName={styles.testSendText}
+                table={table}
               />
               <UserDeletion row={row} table={table} />
             </PopoverContent>

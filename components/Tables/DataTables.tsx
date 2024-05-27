@@ -8,6 +8,7 @@ import {
   getExpandedRowModel,
   useReactTable,
   getPaginationRowModel,
+  Table as ITable,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -63,11 +64,11 @@ export function DataTable<TData, TValue>({
   const selectedRef = useRef(null);
   const initialRender = useRef(true);
 
-  const [selected, setSelected] = useState<IEmployee[]>([]);
-
   const tableRows = useStore((state) => state.tableRows);
   const setTableRowsLoading = useStore((state) => state.setTableRowsLoading);
   const tableRowsLoading = useStore((state) => state.tableRowsLoading);
+  const selectedUser = useStore((state) => state.selectedUser);
+  const setSelectedUser = useStore((state) => state.setSelectedUser);
 
   const table = useReactTable({
     data: tableData,
@@ -124,7 +125,7 @@ export function DataTable<TData, TValue>({
     if (type === "employee") {
       table.resetExpanded();
       table.resetRowSelection(false);
-      setSelected([]);
+      setSelectedUser([]);
       setTableRowsLoading(true);
 
       getEmployeeList({
@@ -154,13 +155,13 @@ export function DataTable<TData, TValue>({
 
   useEffect(() => {
     if (table.getSelectedRowModel().flatRows.length > 0) {
-      setSelected(
+      setSelectedUser(
         table
           .getSelectedRowModel()
           .flatRows.map((item) => item.original as IEmployee)
       );
     } else {
-      setSelected([]);
+      setSelectedUser([]);
     }
   }, [table.getSelectedRowModel()]);
 
@@ -247,21 +248,24 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
 
-          {selected.length > 0 && (
+          {selectedUser.length > 0 && (
             <TableFooter className={styles.tableFooter}>
               <TableRow className={styles.selectedWrapper} ref={selectedRef}>
                 <TableCell />
 
                 <TableCell className={styles.text}>
-                  {selected.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
-                  {selected.length > 1 ? "اند" : "است"}
+                  {selectedUser.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
+                  {selectedUser.length > 1 ? "اند" : "است"}
                 </TableCell>
                 {[...Array(4)].map(() => (
                   <TableCell />
                 ))}
 
                 <TableCell className={styles.button}>
-                  <TestSend selectedUsers={selected} />
+                  <TestSend
+                    selectedUsers={selectedUser}
+                    table={table as ITable<IEmployee>}
+                  />
                 </TableCell>
               </TableRow>
             </TableFooter>
@@ -272,7 +276,7 @@ export function DataTable<TData, TValue>({
       <div className={styles.paginationWrapper}>
         <div className={styles.count}>
           نمایش {endItem.toLocaleString("fa-IR")} از{" "}
-          {totalItems.toLocaleString("fa-IR")}
+          {table.getRowCount().toLocaleString("fa-IR")}
         </div>
         <div className={styles.pagination}>
           <Button

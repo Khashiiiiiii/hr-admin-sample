@@ -8,24 +8,29 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getExams, postCreateExam } from "@/services";
 import { useSession } from "next-auth/react";
-import { IEmployee } from "@/interfaces";
+import { IEmployee, IGetOrganizationExam } from "@/interfaces";
 import { useToast } from "@/components/ui/use-toast";
 import DoneSvg from "@/components/svg/done.svg";
+import { useStore } from "@/store";
+import { Table } from "@tanstack/react-table";
 
 const TestSend = ({
   selectedUsers,
   triggerText,
   triggreTextClassName,
+  table,
 }: {
   selectedUsers: IEmployee[];
   triggerText?: string;
   triggreTextClassName?: string;
+  table: Table<IEmployee> | Table<IGetOrganizationExam>;
 }) => {
   const [tests, setTests] = useState<{ key: string; name: string }[]>([]);
   const session = useSession();
   const access = session.data?.user.accessToken!;
   const [open, setOpen] = useState<boolean>(false);
   const { toast } = useToast();
+  const setSelectedUser = useStore((state) => state.setSelectedUser);
 
   useEffect(() => {
     if (open) {
@@ -44,6 +49,8 @@ const TestSend = ({
       },
     }).then((res) => {
       setOpen(false);
+      setSelectedUser([]);
+      table.resetRowSelection(false);
       toast({
         duration: 3500,
         children: (

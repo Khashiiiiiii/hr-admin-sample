@@ -34,22 +34,13 @@ const Nav = ({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div className={styles.dropdownTrigger}>
-              <div className={styles.label}>
-                <ChevronDownIcon />
-                test@gmail.com
-              </div>
               <Avatar>
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
+                <AvatarImage src="/assets/avatar.png" alt="avatar" />
                 <AvatarFallback></AvatarFallback>
               </Avatar>
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>test@gmail.com</DropdownMenuLabel>
-            <DropdownMenuSeparator />
             <DropdownMenuItem className={styles.formWrapper}>
               <form
                 action={async () => {

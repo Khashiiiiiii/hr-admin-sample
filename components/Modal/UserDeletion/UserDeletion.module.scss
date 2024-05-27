@@ -18,3 +18,9 @@
     @apply text-[#686E78] hover:text-white;
   }
 }
+.toastWrapper {
+  @apply flex w-full justify-between items-center gap-[16px];
+  .icon {
+    @apply w-[48px] h-[48px];
+  }
+}

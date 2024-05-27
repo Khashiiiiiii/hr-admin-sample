@@ -6,10 +6,10 @@ import Modal from "../Modal";
 import styles from "./ExcelUpload.module.scss";
 import { cn } from "@/lib/utils";
 import DoneSvg from "@/components/svg/done.svg";
-import { postEmployeeList } from "@/services";
+import { getEmployeeList, postEmployeeList } from "@/services";
 import { useSession } from "next-auth/react";
-
 import { useToast } from "@/components/ui/use-toast";
+import { useStore } from "@/store";
 
 const ExcelUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -19,17 +19,20 @@ const ExcelUpload = () => {
   const session = useSession();
   const { toast } = useToast();
 
+  const setTableRows = useStore((state) => state.setTableRows);
+  const setTableRowsLoading = useStore((state) => state.setTableRowsLoading);
+
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFile(event.target.files![0]);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file!);
 
-    postEmployeeList(session.data?.user.accessToken!, formData)
-      .then(() => {
+    await postEmployeeList(session.data?.user.accessToken!, formData).then(
+      () => {
         setOpen(false);
         toast({
           duration: 3500,
@@ -49,8 +52,17 @@ const ExcelUpload = () => {
             color: "#007132",
           },
         });
-      })
-      .finally(() => setLoading(false));
+      }
+    );
+    setLoading(false);
+    setTableRowsLoading(true);
+    await getEmployeeList({
+      token: session.data?.user.accessToken!,
+      params: { page: 1, page_size: 7 },
+    }).then((res) => {
+      setTableRows(res);
+      setTableRowsLoading(false);
+    });
   };
   const handleButtonClick = () => {
     fileInputRef.current!.click();
