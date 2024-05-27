@@ -107,7 +107,6 @@ const TestForm = ({
     const isValid = await form.trigger([
       ...currentQuestions.map((item) => String(item.id)),
     ]);
-    console.log(isValid, "isValid");
 
     if (isValid) setCurrentPage(currentPage + 1);
   };
