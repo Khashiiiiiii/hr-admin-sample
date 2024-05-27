@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import DoneSvg from "@/components/svg/done.svg";
 import { postEmployeeList } from "@/services";
 import { useSession } from "next-auth/react";
-import { LoadingBalls } from "@/components/LoadingBalls";
+
 import { useToast } from "@/components/ui/use-toast";
 
 const ExcelUpload = () => {

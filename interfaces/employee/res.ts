@@ -1,4 +1,4 @@
-export interface IGetEmployeeRemainingExams {
+export interface IExam {
   id: number;
   name: string;
   date_created: string;
@@ -7,8 +7,13 @@ export interface IGetEmployeeRemainingExams {
   owner: number;
 }
 
+export interface IGetEmployeeRemainingExams {
+  count: number;
+  result: IExam[];
+}
+
 export interface IGetEmployeeExam {
-  Exam: IGetEmployeeRemainingExams;
+  Exam: IExam;
   questions: Array<IQuestion>;
 }
 

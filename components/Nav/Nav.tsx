@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import styles from "./Nav.module.scss";
 import { Button } from "@/components/ui/button";
@@ -13,46 +13,78 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { BellIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { signOut } from "next-auth/react"
-import {  useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-const Nav = ({ className }: { className?: string }) => {
-  const router = useRouter()
+const Nav = ({
+  className,
+  type,
+}: {
+  className?: string;
+  type: "employee" | "organization";
+}) => {
+  const router = useRouter();
   return (
     <nav className={cn(styles.wrapper, className)}>
       {/* <Button variant='outline' size='icon' className={styles.btn}>
         <BellIcon className={styles.icon} />
       </Button> */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className={styles.dropdownTrigger}>
-            <div className={styles.label}>
-              <ChevronDownIcon />
-              test@gmail.com
+      {type === "organization" ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <div className={styles.dropdownTrigger}>
+              <div className={styles.label}>
+                <ChevronDownIcon />
+                test@gmail.com
+              </div>
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback></AvatarFallback>
+              </Avatar>
             </div>
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback></AvatarFallback>
-            </Avatar>
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>test@gmail.com</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className={styles.formWrapper}>
-            <form
-              action={async () => {
-                await signOut().then(() => router.refresh());
-              }}
-              className={styles.form}
-            >
-              <Button type="submit" className={styles.exitBtn}>
-                خروج
-              </Button>
-            </form>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>test@gmail.com</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className={styles.formWrapper}>
+              <form
+                action={async () => {
+                  await signOut().then(() => router.refresh());
+                }}
+                className={styles.form}
+              >
+                <Button type="submit" className={styles.exitBtn}>
+                  خروج
+                </Button>
+              </form>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <>
+          <Image
+            src="/assets/logo.png"
+            alt="qualia logo"
+            width={146}
+            height={36.5}
+            className={styles.image}
+          />
+          <form
+            action={async () => {
+              await signOut().then(() => router.refresh());
+            }}
+            className={styles.form}
+          >
+            <Button type="submit" className={styles.exitBtn}>
+              خروج
+            </Button>
+          </form>
+        </>
+      )}
     </nav>
   );
 };

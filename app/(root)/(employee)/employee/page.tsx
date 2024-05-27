@@ -7,7 +7,7 @@ import Link from "next/link";
 
 async function getEmployeeExams(
   token: string
-): Promise<IGetEmployeeRemainingExams[]> {
+): Promise<IGetEmployeeRemainingExams> {
   try {
     const data = await getEmployeeRemainingExams(token);
     return data;
@@ -25,14 +25,16 @@ export default async function EmployeePage() {
   const session = await auth();
   const data = await getEmployeeExams(session?.user.accessToken!);
 
+  console.log(data, "Data");
+
   return (
     <div className={styles.wrapper}>
       <h1>انتخاب آزمون</h1>
       <div className={styles.tableOuterWrapper}>
         <ul>
           <li className={styles.header}>نام آزمون</li>
-          {data.length > 0 ? (
-            data.map((exam, index) => (
+          {data.result.length > 0 ? (
+            data.result.map((exam, index) => (
               <li key={index} className={styles.item}>
                 <span>{exam.name}</span>
                 <Link href={`employee/exam/${exam.id}`} className={styles.btn}>

@@ -16,6 +16,7 @@ const credentialsConfig: CredentialsConfig = Credentials({
       password: credentials.password as string,
     })
       .then((res) => {
+        console.log(res, "res");
         return {
           email: credentials.email as string,
           role: res.type,

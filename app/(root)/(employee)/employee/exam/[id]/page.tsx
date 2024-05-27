@@ -30,7 +30,7 @@ export default async function ExamPage({
       <h1>{data.Exam.name}</h1>
 
       <div className={styles.questionsOuterWrapper}>
-        <TestForm questions={data.questions} />
+        <TestForm questions={data.questions} examId={`${data.Exam.id}`} />
       </div>
     </div>
   );

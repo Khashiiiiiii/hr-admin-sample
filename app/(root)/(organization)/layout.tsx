@@ -17,7 +17,7 @@ export default async function RootLayout({
         <body className={cn(iranYekan.className, styles.layoutWrapper)}>
           <Aside />
           <main className={styles.main}>
-            <Nav />
+            <Nav type="organization" />
             <div className={styles.contentWrapper}>{children}</div>
           </main>
           <Toaster />
