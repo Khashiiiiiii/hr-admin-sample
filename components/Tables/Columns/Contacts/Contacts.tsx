@@ -160,11 +160,11 @@ export const contactSubColumns: ColumnDef<TExams>[] = [
         className={cn(
           styles.subTableStatus,
           //@ts-ignore
-          row.ordata_filled && styles.done
+          row.date_filled !== null && styles.done
         )}
       >
         {/* @ts-ignore */}
-        {row.data_filled ? "انجام شده" : "انجام نشده"}
+        {row.date_filled === null ? "انجام نشده" : "انجام شده"}
       </div>
     ),
   },
