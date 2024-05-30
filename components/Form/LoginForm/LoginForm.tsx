@@ -40,7 +40,7 @@ export default function LoginForm() {
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      form.handleSubmit(onSubmit);
+      form.handleSubmit(onSubmit)();
     }
   };
 
