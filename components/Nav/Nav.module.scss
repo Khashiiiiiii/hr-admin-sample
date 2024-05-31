@@ -19,9 +19,13 @@
 .formWrapper {
   @apply p-0;
   .form {
-    @apply w-full;
+    @apply w-full flex gap-[10px] items-center justify-between;
     button {
       @apply m-0 w-full bg-transparent p-0 text-start text-red-600 shadow-none;
     }
   }
+}
+
+.form {
+  @apply w-full flex gap-[10px] items-center justify-between w-fit;
 }

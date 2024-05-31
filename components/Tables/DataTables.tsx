@@ -253,15 +253,16 @@ export function DataTable<TData, TValue>({
               <TableRow className={styles.selectedWrapper} ref={selectedRef}>
                 <TableCell />
 
-                <TableCell className={styles.text}>
+                <TableCell className={styles.text} colSpan={4}>
                   {selectedUser.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
                   {selectedUser.length > 1 ? "اند" : "است"}
                 </TableCell>
-                {[...Array(4)].map(() => (
+                {/* {[...Array(4)].map(() => (
                   <TableCell />
-                ))}
+                ))} */}
 
-                <TableCell className={styles.button}>
+                <TableCell />
+                <TableCell className={styles.button} colSpan={1}>
                   <TestSend
                     selectedUsers={selectedUser}
                     table={table as ITable<IEmployee>}

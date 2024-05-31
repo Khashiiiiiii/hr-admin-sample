@@ -1,12 +1,12 @@
 .wrapper {
   @apply flex flex-col items-center overflow-scroll w-[607px] gap-[23px] -mt-[70px];
   .downloadLink {
-    @apply self-end flex h-fit cursor-pointer items-center justify-between gap-[10px] rounded-[12px] border-[1px] border-[#00AEEF] px-[30px] py-[8.5px] text-[16px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out hover:bg-[#00AEEF] hover:text-white;
-    &:hover {
-      path {
-        @apply stroke-white;
-      }
-    }
+    @apply self-end flex opacity-50 h-fit cursor-pointer items-center justify-between gap-[10px] rounded-[12px] border-[1px] border-[#00AEEF] px-[30px] py-[8.5px] text-[16px] font-normal text-[#00AEEF] transition-all delay-75 ease-in-out cursor-default;
+    // &:hover {
+    //   path {
+    //     @apply stroke-white;
+    //   }
+    // }
   }
 
   .questionsWrapper {

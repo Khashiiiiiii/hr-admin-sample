@@ -20,7 +20,9 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  email: z.string(),
+  email: z.string().regex(new RegExp(`^[a-zA-Z0-9$@$!%*?&#^-_. +]+$`), {
+    message: "از حروف انگلیسی استفاده کنید",
+  }),
   password: z.string().min(2, { message: "رمز عبور حداقل ۸ حرف می باشد" }),
 });
 
@@ -70,12 +72,14 @@ export default function LoginForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className={styles.emailInput}>
-              <FormControl>
-                <Input placeholder="نام کاربری" {...field} />
-              </FormControl>
+            <>
+              <FormItem className={styles.emailInput}>
+                <FormControl>
+                  <Input placeholder="نام کاربری" {...field} />
+                </FormControl>
+              </FormItem>
               <FormMessage />
-            </FormItem>
+            </>
           )}
         />
 
@@ -83,25 +87,27 @@ export default function LoginForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className={styles.passwordInput}>
-              <div
-                onClick={() =>
-                  setPasswordShown((passwordShown) => !passwordShown)
-                }
-                className={styles.eye}
-              >
-                {passwordShown ? <EyeOpenIcon /> : <EyeClosedIcon />}
-              </div>
-              <FormControl>
-                <Input
-                  placeholder="رمز عبور"
-                  {...field}
-                  type={passwordShown ? "text" : "password"}
-                  onKeyDown={(event) => handleKeyDown(event)}
-                />
-              </FormControl>
+            <>
+              <FormItem className={styles.passwordInput}>
+                <div
+                  onClick={() =>
+                    setPasswordShown((passwordShown) => !passwordShown)
+                  }
+                  className={styles.eye}
+                >
+                  {passwordShown ? <EyeOpenIcon /> : <EyeClosedIcon />}
+                </div>
+                <FormControl>
+                  <Input
+                    placeholder="رمز عبور"
+                    {...field}
+                    type={passwordShown ? "text" : "password"}
+                    onKeyDown={(event) => handleKeyDown(event)}
+                  />
+                </FormControl>
+              </FormItem>
               <FormMessage />
-            </FormItem>
+            </>
           )}
         />
 

@@ -18,10 +18,11 @@ const credentialsConfig: CredentialsConfig = Credentials({
       .then((res) => {
         console.log(res, "res");
         return {
-          email: credentials.email as string,
+          email: res.usernme as string,
           role: res.type,
           accessToken: res.access,
           refreshToken: res.refresh,
+          username: res.usernme,
         };
       })
       .catch((err) => {
@@ -46,6 +47,9 @@ export default {
         session.user.refreshToken = token.refreshToken as string;
         // @ts-ignore
         session.user.role = token.role as string;
+        session.user.username = token.usernme as string;
+        // @ts-ignore
+        session.user.email = token.email as string;
       }
       return session;
     },
@@ -54,6 +58,8 @@ export default {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.role = user.role;
+        token.username = user.username;
+        token.email = user.email;
       }
       return token;
     },

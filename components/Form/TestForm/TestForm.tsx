@@ -45,7 +45,7 @@ const TestForm = ({
       if (answers === null) {
         return {
           ...acc,
-          [`${id}`]: z.string().min(10),
+          [`${id}`]: z.string().max(1000),
         };
       }
       return {
@@ -216,10 +216,15 @@ const TestForm = ({
         <div className={styles.counter}>
           سوال{" "}
           {(currentPage * 5 > questions.length
+            ? questions.length - (currentQuestions.length - 1)
+            : currentPage * 5 - (currentQuestions.length - 1)
+          ).toLocaleString("fa-IR")}{" "}
+          تا{" "}
+          {(currentPage * 5 > questions.length
             ? questions.length
             : currentPage * 5
           ).toLocaleString("fa-IR")}{" "}
-          از {questions.length.toLocaleString("fa-IR")}
+          از {questions.length.toLocaleString("fa-IR")}{" "}
         </div>
         <div className={styles.questionsWrapper}>{renderQuestions()}</div>
         <div className={styles.btnGroup}>

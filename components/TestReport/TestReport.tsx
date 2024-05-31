@@ -19,8 +19,8 @@ const TestReport = ({
         className={styles.downloadLink}
         aria-disabled
         href=""
-        download="Filename.xlsx"
-        target="_blank"
+        // download="Filename.xlsx"
+        // target="_blank"
       >
         <span>
           <DownloadIcon />

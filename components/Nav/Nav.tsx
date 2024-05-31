@@ -6,14 +6,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { BellIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -25,6 +22,8 @@ const Nav = ({
   type: "employee" | "organization";
 }) => {
   const router = useRouter();
+  const session = useSession();
+  console.log(session, "session");
   return (
     <nav className={cn(styles.wrapper, className)}>
       {/* <Button variant='outline' size='icon' className={styles.btn}>
@@ -34,9 +33,10 @@ const Nav = ({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div className={styles.dropdownTrigger}>
+              {/* @ts-ignore */}
+              <span>{session.data?.user.email!}</span>
               <Avatar>
                 <AvatarImage src="/assets/avatar.png" alt="avatar" />
-                <AvatarFallback></AvatarFallback>
               </Avatar>
             </div>
           </DropdownMenuTrigger>
@@ -70,6 +70,8 @@ const Nav = ({
             }}
             className={styles.form}
           >
+            {/* @ts-ignore */}
+            <span>{session.data?.user.email}</span>
             <Button type="submit" className={styles.exitBtn}>
               خروج
             </Button>

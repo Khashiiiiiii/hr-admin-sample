@@ -1,7 +1,7 @@
 .wholeCompWrapper {
   @apply flex h-full max-h-[720px] flex-col items-start justify-between;
   .outerWrapper {
-    @apply max-h-[610px] w-full overflow-scroll rounded-[12px] border;
+    @apply w-full overflow-scroll rounded-[12px] border;
     .wrapper {
       @apply relative h-full max-h-full overflow-hidden rounded-[12px] bg-white;
       .tableHeader {
@@ -10,15 +10,15 @@
           @apply h-[76px];
           .tableHead {
             @apply text-right text-[18px] first-of-type:pr-[26px] first-of-type:w-[100px];
-            :nth-child(2) {
-              @apply w-[50px];
-            }
-            :nth-child(3) {
-              @apply w-[135px];
-            }
-            :nth-child(4) {
-              @apply w-[170px];
-            }
+          }
+          :nth-child(2) {
+            @apply w-[50px];
+          }
+          :nth-child(3) {
+            @apply w-[135px];
+          }
+          :nth-child(4) {
+            @apply w-[170px];
           }
           :nth-child(5) {
             @apply w-[200px];
@@ -37,6 +37,7 @@
     }
 
     .tableBody {
+      @apply overflow-auto max-h-[600px];
       .skeletonWrapper {
         @apply h-[76px];
         .tableCell {
@@ -107,7 +108,7 @@
           @apply text-[18px] font-medium text-start text-[#1B1D22] max-w-fit;
         }
         .button {
-          @apply text-center;
+          @apply text-right;
           button {
             @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
           }
