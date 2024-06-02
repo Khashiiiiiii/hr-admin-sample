@@ -1,11 +1,14 @@
 .wholeCompWrapper {
   @apply flex h-full max-h-[720px] flex-col items-start justify-between;
   .outerWrapper {
-    @apply w-full overflow-scroll rounded-[12px] border;
+    @apply w-full overflow-scroll rounded-[12px] border max-h-[610px];
+    > div {
+      @apply h-full;
+    }
     .wrapper {
-      @apply relative h-full max-h-full overflow-hidden rounded-[12px] bg-white;
+      @apply relative h-full max-h-full overflow-auto rounded-[12px] bg-white;
       .tableHeader {
-        @apply p-[26px];
+        @apply p-[26px] sticky top-0 z-[10] bg-white border-b-[1px] border-[#DEE0E3];
         .tableRow {
           @apply h-[76px];
           .tableHead {
@@ -33,6 +36,12 @@
             @apply max-w-[80px];
           }
         }
+      }
+
+      .shadow {
+        -webkit-box-shadow: 0px 4px 5px 0px rgba(125, 125, 126, 0.7);
+        -moz-box-shadow: 0px 4px 5px 0px rgba(125, 125, 126, 0.7);
+        box-shadow: 0px 4px 5px 0px rgba(125, 125, 126, 0.7);
       }
     }
 
@@ -99,18 +108,22 @@
     }
 
     .tableFooter {
+      @apply sticky bottom-0;
       .selectedWrapper {
         -webkit-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
         -moz-box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
         box-shadow: 0px 0px 14px 1px rgba(125, 125, 126, 0.7);
         @apply justify-between items-center bg-white rounded-[12px] w-full h-[92px];
-        .text {
-          @apply text-[18px] font-medium text-start text-[#1B1D22] max-w-fit;
-        }
-        .button {
-          @apply text-right;
-          button {
-            @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
+        .cellWrapper {
+          @apply w-full justify-between items-center px-[25px] flex;
+          .text {
+            @apply text-[18px] font-medium text-start text-[#1B1D22] max-w-fit;
+          }
+          .button {
+            @apply text-right;
+            button {
+              @apply bg-[#00AEEF] text-white text-[18px] font-normal rounded-[12px] px-[16px] py-[8px];
+            }
           }
         }
       }

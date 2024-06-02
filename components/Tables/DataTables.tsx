@@ -61,7 +61,27 @@ export function DataTable<TData, TValue>({
     Array<IEmployee | IGetOrganizationExam>
   >(data.results);
 
-  const selectedRef = useRef(null);
+  const tableRef = useRef(null);
+
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const element = tableRef.current;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        setHeight(entry.contentRect.height);
+      }
+    });
+
+    if (element) {
+      resizeObserver.observe(element);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   const initialRender = useRef(true);
 
   const tableRows = useStore((state) => state.tableRows);
@@ -168,8 +188,10 @@ export function DataTable<TData, TValue>({
   return (
     <div className={styles.wholeCompWrapper}>
       <div className={styles.outerWrapper}>
-        <Table className={styles.wrapper}>
-          <TableHeader className={styles.tableHeader}>
+        <Table className={styles.wrapper} ref={tableRef}>
+          <TableHeader
+            className={cn(styles.tableHeader, height > 610 && styles.shadow)}
+          >
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow className={styles.tableRow} key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -250,23 +272,21 @@ export function DataTable<TData, TValue>({
 
           {selectedUser.length > 0 && (
             <TableFooter className={styles.tableFooter}>
-              <TableRow className={styles.selectedWrapper} ref={selectedRef}>
-                <TableCell />
+              <TableRow className={styles.selectedWrapper}>
+                <TableCell colSpan={7}>
+                  <div className={styles.cellWrapper}>
+                    <span className={styles.text}>
+                      {selectedUser.length.toLocaleString("fa-IR")} نفر انتخاب
+                      شده {selectedUser.length > 1 ? "اند" : "است"}
+                    </span>
 
-                <TableCell className={styles.text} colSpan={4}>
-                  {selectedUser.length.toLocaleString("fa-IR")} نفر انتخاب شده{" "}
-                  {selectedUser.length > 1 ? "اند" : "است"}
-                </TableCell>
-                {/* {[...Array(4)].map(() => (
-                  <TableCell />
-                ))} */}
-
-                <TableCell />
-                <TableCell className={styles.button} colSpan={1}>
-                  <TestSend
-                    selectedUsers={selectedUser}
-                    table={table as ITable<IEmployee>}
-                  />
+                    <span className={styles.button}>
+                      <TestSend
+                        selectedUsers={selectedUser}
+                        table={table as ITable<IEmployee>}
+                      />
+                    </span>
+                  </div>
                 </TableCell>
               </TableRow>
             </TableFooter>
