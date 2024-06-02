@@ -13,7 +13,6 @@ async function getAllExams(token: string): Promise<IGetAllOrganizationExam> {
     const data = await getAllOrganizationExam(token);
     return data;
   } catch (error) {
-    console.log(error, "error");
     throw new Error("Failed to fetch data");
   }
 }

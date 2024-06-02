@@ -15,7 +15,6 @@ async function getExamAnswers(
     const data = await getEmployeeExamDetail(token, id);
     return data;
   } catch (error) {
-    console.log(error, "error");
     throw new Error("Failed to fetch data");
   }
 }

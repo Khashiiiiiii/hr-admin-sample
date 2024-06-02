@@ -19,7 +19,6 @@ async function getContactsData(token: string): Promise<IEmployeeList> {
     });
     return data;
   } catch (error) {
-    console.log(error, "error");
     throw new Error("Failed to fetch data");
   }
 }

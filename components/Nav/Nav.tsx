@@ -23,7 +23,7 @@ const Nav = ({
 }) => {
   const router = useRouter();
   const session = useSession();
-  console.log(session, "session");
+
   return (
     <nav className={cn(styles.wrapper, className)}>
       {/* <Button variant='outline' size='icon' className={styles.btn}>

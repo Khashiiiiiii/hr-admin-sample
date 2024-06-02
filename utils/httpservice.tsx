@@ -26,10 +26,15 @@ const fetchWithTimeout = async (
   });
 
   clearTimeout(id);
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`, {
-      cause: response.status,
-    });
+  if (response.status === 401) {
+    if (typeof window !== "undefined") {
+      // Client-side redirect
+      window.location.href = "/logout";
+    } else {
+      throw new Error(`Unauthorized`, { cause: response.status });
+    }
+  } else if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
   }
   return response;
 };
