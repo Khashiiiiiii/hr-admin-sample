@@ -27,8 +27,9 @@ const Result = ({ item, index }: { index: number; item: IGetReport }) => {
           {type !== "table" && (
             <Button
               onClick={() => (type === "bar" ? setType("pie") : setType("bar"))}
+              id="chartBtn"
             >
-              {type === "bar" ? "پای" : "بار"}
+              {type === "bar" ? "دایره‌ای" : "میله‌ای"}
             </Button>
           )}
         </h3>
