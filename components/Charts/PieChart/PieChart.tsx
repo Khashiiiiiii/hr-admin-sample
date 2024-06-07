@@ -59,7 +59,7 @@ const PieChart = ({
               <span>{entry.payload.title}</span>
               <span className={styles.value}>
                 {/* @ts-ignore */}
-                {`${parseInt(((entry.payload.value * 100) / sum).toFixed(2)).toLocaleString("fa-IR")}%`}
+                {`${parseFloat(((entry.payload.value * 100) / sum).toFixed(2)).toLocaleString("fa-IR")}%`}
               </span>
             </div>
           </div>
