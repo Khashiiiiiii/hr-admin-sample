@@ -91,7 +91,7 @@ const TestForm = ({
                 <div className={styles.icon}>
                   <DoneSvg />
                 </div>
-                <p>نتایج آزمون ارسال شد</p>
+                <p>نتایج آزمون ارسال شد.</p>
               </div>
             ),
             style: {

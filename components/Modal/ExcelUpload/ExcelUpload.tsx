@@ -41,7 +41,7 @@ const ExcelUpload = () => {
               <div className={styles.icon}>
                 <DoneSvg />
               </div>
-              <p>اکسل با موفقیت بارگزاری شد</p>
+              <p>اکسل با موفقیت بارگزاری شد.</p>
             </div>
           ),
           style: {

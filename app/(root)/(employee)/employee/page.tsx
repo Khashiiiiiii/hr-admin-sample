@@ -12,7 +12,6 @@ async function getEmployeeExams(
     const data = await getEmployeeRemainingExams(token);
     return data;
   } catch (error) {
-    console.log(error, "error");
     throw new Error("Failed to fetch data");
   }
 }
@@ -24,8 +23,6 @@ export const metadata: Metadata = {
 export default async function EmployeePage() {
   const session = await auth();
   const data = await getEmployeeExams(session?.user.accessToken!);
-
-  console.log(data, "Data");
 
   return (
     <div className={styles.wrapper}>

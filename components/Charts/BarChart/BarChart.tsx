@@ -17,7 +17,6 @@ const BarChart = ({
   data: { title: string; value: number }[];
   color: string;
 }) => {
-  console.log(data, "data");
   return (
     <ResponsiveContainer height={400} className={styles.wrapper}>
       <Chart data={data} className={styles.chartWrapper}>

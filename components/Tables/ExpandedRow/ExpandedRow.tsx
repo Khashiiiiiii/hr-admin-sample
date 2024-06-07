@@ -38,7 +38,7 @@ const ExpandedRow = ({
       .then((res) => {
         setSubTableData(res.results);
       })
-      .catch((err) => console.log(err, "errrp"))
+      .catch((err) => {})
       .finally(() => setLoading(false));
   }, []);
 

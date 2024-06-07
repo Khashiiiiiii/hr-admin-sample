@@ -22,8 +22,10 @@ const PieChart = ({
   colors: string[];
 }) => {
   const CustomLegend: React.FC<CustomLegendProps> = ({ payload = [] }) => {
-    console.log(payload, "payload");
-    console.log(data, "data");
+    const sum = payload.reduce((prev, current) => {
+      return (prev += current.payload?.value);
+    }, 0);
+
     return (
       <div
         className="customized-legend"
@@ -57,7 +59,7 @@ const PieChart = ({
               <span>{entry.payload.title}</span>
               <span className={styles.value}>
                 {/* @ts-ignore */}
-                {`${parseInt(((entry.payload.value * 100) / payload.length).toFixed(2)).toLocaleString("fa-IR")}%`}
+                {`${parseInt(((entry.payload.value * 100) / sum).toFixed(2)).toLocaleString("fa-IR")}%`}
               </span>
             </div>
           </div>
@@ -70,7 +72,7 @@ const PieChart = ({
     <ResponsiveContainer width="100%" height={390} className={styles.wrapper}>
       <Chart width={306} height={306} className={styles.chart}>
         <Pie
-          data={data.reverse()}
+          data={data}
           cx="50%"
           cy="50%"
           // label={({ cx, cy, midAngle, innerRadius, outerRadius, name }) => {

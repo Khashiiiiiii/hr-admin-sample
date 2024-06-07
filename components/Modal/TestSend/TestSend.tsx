@@ -60,7 +60,7 @@ const TestSend = ({
             </div>
             <p>
               {" "}
-              {`آزمون ${res.title} با موفقیت به ${selectedUsers.length > 1 ? `${selectedUsers.length.toLocaleString("fa-IR")} نفر` : res.recipent} ارسال شد`}
+              {`آزمون ${res.title} با موفقیت به ${selectedUsers.length > 1 ? `${selectedUsers.length.toLocaleString("fa-IR")} نفر` : res.recipent} ارسال شد.`}
             </p>
           </div>
         ),

@@ -51,7 +51,6 @@ async function fetchJSON<T>(
       throw new Error("Response was not JSON");
     }
   } catch (error) {
-    console.log(error, "error in fetch json");
     throw error;
   }
 }
