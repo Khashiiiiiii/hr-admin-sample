@@ -69,5 +69,4 @@ Environment template: [.env.example](.env.example)
 
 **Khashayar Hajnabi**
 
-- [LinkedIn Profile Link]
-- [Portfolio Link if you have one]
+- [LinkedIn](https://www.linkedin.com/in/khashayar-hajnabi/)
