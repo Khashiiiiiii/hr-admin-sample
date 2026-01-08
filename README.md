@@ -1,64 +1,73 @@
-## README.md for Your React Startup Project
+# HR Admin Dashboard (Sample)
 
-**Project Name:** Organometer Front End
+This repository contains the front-end implementation of a B2B HR administration panel. It demonstrates my approach to building scalable, type-safe web applications using modern React ecosystems.
 
-**Description:**
+## 🛠 Tech Stack
 
-This repository contains the source code for a React application built for [briefly explain your startup's purpose and target audience]. The project is currently in [development stage, beta testing, etc.].
+- Framework: Next.js 14
+- Styling: Tailwind + SCSS modules
+- UI primitives: Shadcn-style components + TanStack Table
+- Auth: NextAuth
+- HTTP client: fetch wrapper
 
-**Getting Started:**
+## 📂 Project Context & Scope
 
-1. **Clone the repository:**
+This project was originally developed as part of a startup initiative. I have sanitized the code for this public repository to demonstrate my coding standards and architectural choices.
 
-```bash
-git clone https://gitlab.com/hossein.of.j/organometerfrontend.git
+**Key focuses of this codebase:**
+
+- **Modular Component Structure:** Reusable UI elements to maintain consistency.
+- **TypeScript Integration:** Ensuring type safety for props and API responses.
+- **Responsive Design:** Layouts adapted for various screen sizes.
+- **Data Handling:** Examples of how data is fetched and rendered in table/dashboard views.
+
+_Note: Some API endpoints or proprietary logic have been mocked or removed for privacy/security reasons._
+
+**Folder layout (top-level)**
+
+```text
+.
+├── app/                           # Next.js App Router & Layouts
+│   ├── (auth)/                    # Public authentication routes
+│   │   └── login/
+│   └── (root)/                    # Protected application routes
+│       ├── (organization)/        # Admin views (Analysis, Contacts, Tests)
+│       └── (employee)/            # Employee-specific dashboard views
+├── components/                    # Reusable UI & Feature Components
+│   ├── Aside/                     # Sidebar navigation & Menu items
+│   ├── Charts/                    # Data visualization components
+│   ├── Form/                      # Form logic (e.g., LoginForm)
+│   ├── Modal/                     # Excel & Test upload modals
+│   ├── Nav/                       # Top navigation bar
+│   └── Tables/                    # DataTables & Column definitions
+├── constants/                     # Static configuration (Menu links, enums)
+├── interfaces/                    # TypeScript type definitions
+├── lib/                           # External library configurations
+├── public/                        # Static assets (images, icons)
+├── services/                      # API Surface (Domain-separated)
+│   ├── employee.ts                # Employee endpoints
+│   ├── managements.ts             # Management endpoints
+│   └── manager.ts                 # Exam/Test management endpoints
+├── styles/                        # Global styles & SCSS modules
+│   ├── globals.scss
+│   └── resets.scss
+└── utils/                         # Helper functions
+    └── httpservice.tsx            # Centralized HTTP wrapper
+
 ```
 
-2. **Install dependencies:**
+## 🚀 Quick start
 
-```bash
-cd organometerfrontend
-npm install
-```
+- Install deps: `npm install`
+- Dev: `npm run dev`
+- Build: `npm run build`
+- Start: `npm run start`
 
-3. **Run the development server:**
+Environment template: [.env.example](.env.example)
 
-```bash
-npm start
-```
+## 👤 Author
 
-This will start the development server and open the application in your default browser.
+**Khashayar Hajnabi**
 
-**Project Structure:**
-
-* **src:** Contains the source code for the React application, including components, routes, styles, and utility functions.
-* **public:** Contains static assets such as images, fonts, and favicons.
-* **package.json:** Contains project metadata and dependencies.
-* **[other folders/files]** (optional): Additional folders or files specific to your project.
-
-**Contributing:**
-
-We welcome contributions to this project! Please see the CONTRIBUTING.md: CONTRIBUTING.md file for guidelines on how to contribute.
-
-**Licensing:**
-
-This project is licensed under the [license name] license. See the LICENSE: LICENSE file for details.
-
-**Additional Information:**
-
-* **Deployment instructions:** [Describe how to deploy the application to production.]
-* **Testing instructions:** [Describe how to run unit and integration tests.]
-* **Tech stack:** [List the technologies used in the project, e.g., React version, libraries, frameworks.]
-* **API documentation:** (Optional, if applicable) Link to or describe your API documentation.
-
-**Note:**
-
-* This is a template and you should customize it to fit your specific project.
-* Be sure to replace the bracketed information with your own details.
-* You may want to add additional sections as needed, such as:
-    * Features and benefits of your project
-    * Roadmap for future development
-    * Contact information
-    * Troubleshooting guide
-
-I hope this helps! Feel free to ask if you have any further questions.
+- [LinkedIn Profile Link]
+- [Portfolio Link if you have one]
